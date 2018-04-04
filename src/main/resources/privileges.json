@@ -1,0 +1,425 @@
+[
+  {
+    "id": 17592186046051,
+    "name": "Resubmit Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Resubmit"
+  },
+  {
+    "id": 17592186046185,
+    "name": "Manage Subject global",
+    "object": "Subject",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186046316,
+    "name": "CommentAll TaRequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Commentall"
+  },
+  {
+    "id": 17592186046061,
+    "name": "Readall Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Readall"
+  },
+  {
+    "id": 17592186046318,
+    "name": "CommentAll TaActivity",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Commentall"
+  },
+  {
+    "id": 17592186046063,
+    "name": "Readall Taactivity",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Readall"
+  },
+  {
+    "id": 17592186046067,
+    "name": "Createall Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Createall"
+  },
+  {
+    "id": 17592186046069,
+    "name": "Editall Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Editall"
+  },
+  {
+    "id": 17592186046094,
+    "name": "Manage Taworkflow",
+    "system": "Ta",
+    "object": "Ta Workflow",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186046112,
+    "name": "Assign Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Assign"
+  },
+  {
+    "id": 17592186046114,
+    "name": "Assign Taactivity",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Assign"
+  },
+  {
+    "id": 17592186047012,
+    "name": "Read Document",
+    "system": "Ta",
+    "object": "Ta Attachment",
+    "action": "Read"
+  },
+  {
+    "id": 17592186047014,
+    "name": "Readall Document",
+    "system": "Ta",
+    "object": "Ta Attachment",
+    "action": "Readall"
+  },
+  {
+    "id": 17592186047016,
+    "name": "Edit Document",
+    "system": "Ta",
+    "object": "Ta Attachment",
+    "action": "Edit"
+  },
+  {
+    "id": 17592186047018,
+    "name": "Editall Document",
+    "system": "Ta",
+    "object": "Ta Attachment",
+    "action": "Editall"
+  },
+  {
+    "id": 17592186047020,
+    "name": "Attach Document",
+    "system": "Ta",
+    "object": "Ta Attachment",
+    "action": "Create"
+  },
+  {
+    "id": 17592186045486,
+    "name": "Manage Action",
+    "object": "Action",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186047022,
+    "name": "Attachall Document",
+    "system": "Ta",
+    "object": "Ta Attachment",
+    "action": "Createall"
+  },
+  {
+    "id": 17592186045488,
+    "name": "Manage Object",
+    "object": "Object",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186047024,
+    "name": "Delete Document",
+    "system": "Ta",
+    "object": "Ta Attachment",
+    "action": "Delete"
+  },
+  {
+    "id": 17592186045490,
+    "name": "Manage Subject",
+    "object": "Subject",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186047026,
+    "name": "Deleteall Document",
+    "system": "Ta",
+    "object": "Ta Attachment",
+    "action": "Deleteall"
+  },
+  {
+    "id": 17592186046003,
+    "name": "Create Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Create"
+  },
+  {
+    "id": 17592186045492,
+    "name": "Manage Privilege",
+    "object": "Privilege",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186046005,
+    "name": "Delete Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Delete"
+  },
+  {
+    "id": 17592186046133,
+    "name": "Delete Taactivity copy",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Delete"
+  },
+  {
+    "id": 17592186045494,
+    "name": "Manage Role",
+    "object": "Role",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186046007,
+    "name": "PreSubmit Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Presubmit"
+  },
+  {
+    "id": 17592186045496,
+    "name": "Manage Scope",
+    "object": "Scope",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186046009,
+    "name": "Submit Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Submit"
+  },
+  {
+    "id": 17592186046393,
+    "name": "View Request Comment All",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Viewcommentall"
+  },
+  {
+    "id": 17592186045498,
+    "name": "Manage Scope Type",
+    "object": "Scope Type",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186046011,
+    "name": "Edit Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Edit"
+  },
+  {
+    "id": 17592186045500,
+    "name": "Manage Scope Group",
+    "object": "Scope Group",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186046396,
+    "name": "View Request Comment",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Viewcomment"
+  },
+  {
+    "id": 17592186046013,
+    "name": "Return Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Return"
+  },
+  {
+    "id": 17592186046141,
+    "name": "Manage Scope2",
+    "object": "Scope",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186045502,
+    "name": "Manage Assignment",
+    "object": "Assignment",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186046398,
+    "name": "View Activity Comment",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Viewcomment"
+  },
+  {
+    "id": 17592186046015,
+    "name": "Withdraw Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Withdraw"
+  },
+  {
+    "id": 17592186045504,
+    "name": "Manage Root Assignment",
+    "system": "PMM",
+    "object": "Root Assignment",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186046400,
+    "name": "View Activity Comment All",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Viewcommentall"
+  },
+  {
+    "id": 17592186046017,
+    "name": "Read Only View Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Readonly"
+  },
+  {
+    "id": 17592186046019,
+    "name": "Copy Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Copy"
+  },
+  {
+    "id": 17592186046787,
+    "name": "Check",
+    "system": "TA",
+    "object": "Announcement",
+    "action": "Manage"
+  },
+  {
+    "id": 17592186046021,
+    "name": "Read Tarequest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Read"
+  },
+  {
+    "id": 17592186046025,
+    "name": "Reroute Tarquest",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Reroute"
+  },
+  {
+    "id": 17592186046410,
+    "name": "Edit request Comment",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Editcomment"
+  },
+  {
+    "id": 17592186046027,
+    "name": "Create Taactivity",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Create"
+  },
+  {
+    "id": 17592186046412,
+    "name": "Edit Activity Comment",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Editcomment"
+  },
+  {
+    "id": 17592186046029,
+    "name": "Createall Taactivity",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Createall"
+  },
+  {
+    "id": 17592186046031,
+    "name": "Save Taactivity",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Save"
+  },
+  {
+    "id": 17592186046416,
+    "name": "Delete Activity Comment",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Deletecomment"
+  },
+  {
+    "id": 17592186046033,
+    "name": "Read Taactivity",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Read"
+  },
+  {
+    "id": 17592186046418,
+    "name": "Delete Request Comment",
+    "system": "Ta",
+    "object": "Ta Request",
+    "action": "Deletecomment"
+  },
+  {
+    "id": 17592186046037,
+    "name": "Edit Taactivity",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Edit"
+  },
+  {
+    "id": 17592186046039,
+    "name": "Editall Taactivity",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Editall"
+  },
+  {
+    "id": 17592186046041,
+    "name": "Copy Taactivity",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Copy"
+  },
+  {
+    "id": 17592186046043,
+    "name": "Read Only View Taactivity",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Readonly"
+  },
+  {
+    "id": 17592186046045,
+    "name": "Delete Taactivity",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Delete"
+  },
+  {
+    "id": 17592186046047,
+    "name": "Deleteall Taactivty",
+    "system": "Ta",
+    "object": "Ta Activity",
+    "action": "Deleteall"
+  },
+  {
+    "id": 17592186045490,
+    "name": "Manage Subject TA",
+    "system": "Ta",
+    "object": "Subject",
+    "action": "Manage"
+  }
+]

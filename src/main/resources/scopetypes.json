@@ -1,0 +1,20 @@
+[
+  {
+    "scopetype": "Root"
+  },
+  {
+    "scopetype": "GrantProject",
+    "parent": "GrantProgramOrganization"
+  },
+  {
+    "scopetype": "GrantProgram",
+    "parent": "Partner"
+  },
+  {
+    "scopetype": "Partner"
+  },
+  {
+    "scopetype": "GrantProgramOrganization",
+    "parent": "GrantProgram"
+  }
+]

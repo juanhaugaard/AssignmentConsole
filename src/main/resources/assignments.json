@@ -1,0 +1,958 @@
+[
+  {
+    "scopes": [
+      {
+        "id": "5a71ef10-4507-4e42-a3dc-bd1f6a2ed928",
+        "name": "PHEP GrantProject1"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-03-02T00:00Z",
+    "id": "5a95d4f7-adb9-4394-a71e-87272b5fc471",
+    "privileges": [
+      {
+        "id": 17592186046063,
+        "name": "Readall Taactivity"
+      },
+      {
+        "id": 17592186047012,
+        "name": "Read Document"
+      },
+      {
+        "id": 17592186047014,
+        "name": "Readall Document"
+      },
+      {
+        "id": 17592186047016,
+        "name": "Edit Document"
+      },
+      {
+        "id": 17592186047018,
+        "name": "Editall Document"
+      },
+      {
+        "id": 17592186047020,
+        "name": "Attach Document"
+      },
+      {
+        "id": 17592186047022,
+        "name": "Attachall Document"
+      },
+      {
+        "id": 17592186047024,
+        "name": "Delete Document"
+      },
+      {
+        "id": 17592186047026,
+        "name": "Deleteall Document"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-01-30T00:00Z",
+    "id": "5a70801b-3258-4605-b5cb-5e7f642f1b2b",
+    "privileges": [
+      {
+        "id": 17592186046037,
+        "name": "Edit Taactivity"
+      },
+      {
+        "id": 17592186046039,
+        "name": "Editall Taactivity"
+      }
+    ],
+    "assignee": "Test",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-12-10T00:00Z",
+    "id": "5a81cbed-b09a-4462-8127-c15cd3f1afb6",
+    "privileges": [
+      {
+        "id": 17592186046005,
+        "name": "Delete Tarequest"
+      },
+      {
+        "id": 17592186046416,
+        "name": "Delete Activity Comment"
+      },
+      {
+        "id": 17592186046418,
+        "name": "Delete Request Comment"
+      }
+    ],
+    "assignee": "mamatha",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451ceb-72e9-4aba-8507-1c479f52855c",
+        "name": "HPP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-02-20T00:00Z",
+    "id": "5a8c6212-6697-453b-b9e4-ce1bb070bbac",
+    "privileges": [
+      {
+        "id": 17592186046029,
+        "name": "Createall Taactivity"
+      }
+    ],
+    "assignee": "Ranjini",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-02-21T00:00Z",
+    "id": "5a8dc429-2b4d-4244-9b59-deb3401783cd",
+    "privileges": [
+      {
+        "id": 17592186046027,
+        "name": "Create Taactivity"
+      },
+      {
+        "id": 17592186046029,
+        "name": "Createall Taactivity"
+      }
+    ],
+    "assignee": "Ranjini",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-01-23T00:00Z",
+    "id": "5a67618b-7b14-45d8-a338-17d89b446c77",
+    "privileges": [
+      {
+        "id": 17592186046003,
+        "name": "Create Tarequest"
+      },
+      {
+        "id": 17592186046011,
+        "name": "Edit Tarequest"
+      },
+      {
+        "id": 17592186046027,
+        "name": "Create Taactivity"
+      },
+      {
+        "id": 17592186046029,
+        "name": "Createall Taactivity"
+      },
+      {
+        "id": 17592186046047,
+        "name": "Deleteall Taactivty"
+      }
+    ],
+    "assignee": "mamatha",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-12-10T00:00Z",
+    "id": "5a81cc05-7fb9-4bff-9680-33807dd81b4e",
+    "privileges": [
+      {
+        "id": 17592186046039,
+        "name": "Editall Taactivity"
+      },
+      {
+        "id": 17592186046410,
+        "name": "Edit request Comment"
+      },
+      {
+        "id": 17592186046412,
+        "name": "Edit Activity Comment"
+      }
+    ],
+    "assignee": "mamatha",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-01-30T00:00Z",
+    "id": "5a70a8ad-1e99-49fc-b2f2-10b8d2772aea",
+    "privileges": [
+      {
+        "id": 17592186046027,
+        "name": "Create Taactivity"
+      },
+      {
+        "id": 17592186046029,
+        "name": "Createall Taactivity"
+      }
+    ],
+    "assignee": "Test",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-01-24T00:00Z",
+    "id": "5a68cc27-58ef-4484-a871-b80579bb9249",
+    "privileges": [
+      {
+        "id": 17592186045490,
+        "name": "Manage Subject"
+      },
+      {
+        "id": 17592186045502,
+        "name": "Manage Assignment"
+      },
+      {
+        "id": 17592186046009,
+        "name": "Submit Tarequest"
+      }
+    ],
+    "assignee": "Smita",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-01-24T00:00Z",
+    "id": "5a68cc52-c4ac-433e-938e-4f4b16a06067",
+    "privileges": [
+      {
+        "id": 17592186045490,
+        "name": "Manage Subject"
+      },
+      {
+        "id": 17592186046185,
+        "name": "Manage Subject global"
+      }
+    ],
+    "assignee": "Smita",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-01-30T00:00Z",
+    "id": "5a70ab6d-373c-4a63-9654-499560d83383",
+    "privileges": [
+      {
+        "id": 17592186046027,
+        "name": "Create Taactivity"
+      },
+      {
+        "id": 17592186046029,
+        "name": "Createall Taactivity"
+      }
+    ],
+    "assignee": "Test",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a71df13-887b-469f-ac1d-1337d6d0ad03",
+        "name": "PHEP GrantProgramOrganization1"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-03-30T00:00Z",
+    "id": "5a8c7fff-2b63-410c-8a0b-aded606ab087",
+    "privileges": [
+      {
+        "id": 17592186046029,
+        "name": "Createall Taactivity"
+      },
+      {
+        "id": 17592186046067,
+        "name": "Createall Tarequest"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-12-20T21:35Z",
+    "id": "5a78c0a7-4196-4a11-b6fc-1b3ccdb70bad",
+    "privileges": [
+      {
+        "id": 17592186046316,
+        "name": "CommentAll TaRequest"
+      },
+      {
+        "id": 17592186046318,
+        "name": "CommentAll TaActivity"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a71ef10-4507-4e42-a3dc-bd1f6a2ed928",
+        "name": "PHEP GrantProject1"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-03-30T00:00Z",
+    "id": "5a8c8045-7d12-4c8d-ae9d-4d6350e5d708",
+    "privileges": [
+      {
+        "id": 17592186046029,
+        "name": "Createall Taactivity"
+      },
+      {
+        "id": 17592186046067,
+        "name": "Createall Tarequest"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a71ef10-4507-4e42-a3dc-bd1f6a2ed928",
+        "name": "PHEP GrantProject1"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-03-30T00:00Z",
+    "id": "5a8c8163-f432-4faa-beb3-a110dea93ef6",
+    "privileges": [
+      {
+        "id": 17592186046003,
+        "name": "Create Tarequest"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a679ca2-b1d8-4851-839c-9939d25938d2",
+        "name": "Alabama"
+      }
+    ],
+    "expdate": "2018-02-12T00:00Z",
+    "delegated": "true",
+    "effdate": "2018-01-30T00:00Z",
+    "id": "5a70c964-aa86-4bf5-9593-2ded8e338044",
+    "privileges": [
+      {
+        "id": 17592186045486,
+        "name": "Manage Action"
+      }
+    ],
+    "delegatee": "Test",
+    "delegator": "Ranjini"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-03-02T00:00Z",
+    "id": "5a99c65c-3b59-487f-b362-acb940cfd3d6",
+    "privileges": [
+      {
+        "id": 17592186046005,
+        "name": "Delete Tarequest"
+      },
+      {
+        "id": 17592186046009,
+        "name": "Submit Tarequest"
+      },
+      {
+        "id": 17592186046069,
+        "name": "Editall Tarequest"
+      },
+      {
+        "id": 17592186046316,
+        "name": "CommentAll TaRequest"
+      }
+    ],
+    "assignee": "Triage",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a679ca2-b1d8-4851-839c-9939d25938d2",
+        "name": "Alabama"
+      }
+    ],
+    "expdate": "2018-04-12T00:00Z",
+    "delegated": "true",
+    "effdate": "2018-03-30T00:00Z",
+    "id": "5a70cf2e-413a-41fc-b747-513f5af5f858",
+    "privileges": [
+      {
+        "id": 17592186045486,
+        "name": "Manage Action"
+      }
+    ],
+    "delegatee": "Test",
+    "delegator": "Ranjini"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a71ef10-4507-4e42-a3dc-bd1f6a2ed928",
+        "name": "PHEP GrantProject1"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-03-30T00:00Z",
+    "id": "5a8c82be-b89f-45a6-8225-7ab3558118e6",
+    "privileges": [
+      {
+        "id": 17592186046112,
+        "name": "Assign Tarequest"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-02-07T00:00Z",
+    "id": "5a7b2a59-c831-4a21-a57c-e07aeecd04ff",
+    "privileges": [
+      {
+        "id": 17592186046316,
+        "name": "CommentAll TaRequest"
+      },
+      {
+        "id": 17592186046318,
+        "name": "CommentAll TaActivity"
+      }
+    ],
+    "assignee": "Program",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a71ef10-4507-4e42-a3dc-bd1f6a2ed928",
+        "name": "PHEP GrantProject1"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-01-31T00:00Z",
+    "id": "5a71efc2-474c-4f99-88fb-00d901bdf836",
+    "privileges": [
+      {
+        "id": 17592186046029,
+        "name": "Createall Taactivity"
+      }
+    ],
+    "assignee": "Ranjini",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451c7a-1be0-4de1-a49b-e4cd8a053f6b",
+        "name": "ACF"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-01-23T00:00Z",
+    "id": "5a67a822-4cff-46f3-846e-d7c8370c5308",
+    "privileges": [
+      {
+        "id": 17592186046141,
+        "name": "Manage Scope2"
+      }
+    ],
+    "assignee": "TestTestTestTest",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-12-10T00:00Z",
+    "id": "5a7dfd1f-5199-4343-8409-85cbbc978e8c",
+    "privileges": [
+      {
+        "id": 17592186046393,
+        "name": "View Request Comment All"
+      },
+      {
+        "id": 17592186046396,
+        "name": "View Request Comment"
+      },
+      {
+        "id": 17592186046398,
+        "name": "View Activity Comment"
+      },
+      {
+        "id": 17592186046400,
+        "name": "View Activity Comment All"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a3ad7b1-caea-4012-abd4-bc2c9a4b2bb3",
+        "name": "Authorization System"
+      }
+    ],
+    "delegated": "false",
+    "roles": [
+      {
+        "id": 17592186045506,
+        "name": "Root Admin"
+      }
+    ],
+    "effdate": "2017-12-20T21:35Z",
+    "id": "5a3ad7b7-08e7-4e87-a697-6611923a90e7",
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-12-20T21:35Z",
+    "id": "5a67acc3-be9b-43ca-ab07-fb82666a19c6",
+    "privileges": [
+      {
+        "id": 17592186046037,
+        "name": "Edit Taactivity"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a71ef10-4507-4e42-a3dc-bd1f6a2ed928",
+        "name": "PHEP GrantProject1"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-03-30T00:00Z",
+    "id": "5a873a4d-fd4a-4787-9985-63d336b2909a",
+    "privileges": [
+      {
+        "id": 17592186046009,
+        "name": "Submit Tarequest"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegableprivileges": [
+      {
+        "id": 17592186045488,
+        "name": "Manage Object"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-12-20T21:35Z",
+    "assignor": "rootadmin",
+    "id": "5a67c100-1a41-4a7c-963d-327ebf42bc8a",
+    "privileges": [
+      {
+        "id": 17592186046037,
+        "name": "Edit Taactivity"
+      }
+    ],
+    "assignee": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a71ef10-4507-4e42-a3dc-bd1f6a2ed928",
+        "name": "PHEP GrantProject1"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-03-30T00:00Z",
+    "id": "5a873ace-277c-4a8f-875f-421361a9419a",
+    "privileges": [
+      {
+        "id": 17592186046029,
+        "name": "Createall Taactivity"
+      },
+      {
+        "id": 17592186046067,
+        "name": "Createall Tarequest"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a71ef10-4507-4e42-a3dc-bd1f6a2ed928",
+        "name": "PHEP GrantProject1"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-03-30T00:00Z",
+    "id": "5a873de9-b018-4c8c-b5ce-f89346b39ee0",
+    "privileges": [
+      {
+        "id": 17592186046112,
+        "name": "Assign Tarequest"
+      },
+      {
+        "id": 17592186046114,
+        "name": "Assign Taactivity"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451ceb-72e9-4aba-8507-1c479f52855c",
+        "name": "HPP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-02-28T00:00Z",
+    "id": "5a972198-29c1-4b07-9829-fbf436fd51db",
+    "privileges": [
+      {
+        "id": 17592186046396,
+        "name": "View Request Comment"
+      }
+    ],
+    "assignee": "SME",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-12-10T00:00Z",
+    "id": "5a81c1b5-d61e-40c7-951d-eb1e1dc0528c",
+    "privileges": [
+      {
+        "id": 17592186046410,
+        "name": "Edit request Comment"
+      },
+      {
+        "id": 17592186046412,
+        "name": "Edit Activity Comment"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451ceb-72e9-4aba-8507-1c479f52855c",
+        "name": "HPP"
+      },
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-02-28T00:00Z",
+    "id": "5a972373-c49d-4b42-9f04-ce52a928fc82",
+    "privileges": [
+      {
+        "id": 17592186046396,
+        "name": "View Request Comment"
+      }
+    ],
+    "assignee": "SME",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-12-10T00:00Z",
+    "id": "5a81c243-13f8-49bd-b39d-4a873171d5d6",
+    "privileges": [
+      {
+        "id": 17592186046416,
+        "name": "Delete Activity Comment"
+      },
+      {
+        "id": 17592186046418,
+        "name": "Delete Request Comment"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451ceb-72e9-4aba-8507-1c479f52855c",
+        "name": "HPP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-02-27T00:00Z",
+    "id": "5a95cf40-f73a-46a7-b6fc-8148d6a8eff1",
+    "privileges": [
+      {
+        "id": 17592186046003,
+        "name": "Create Tarequest"
+      },
+      {
+        "id": 17592186046027,
+        "name": "Create Taactivity"
+      },
+      {
+        "id": 17592186046069,
+        "name": "Editall Tarequest"
+      },
+      {
+        "id": 17592186046318,
+        "name": "CommentAll TaActivity"
+      }
+    ],
+    "assignee": "Ranjini",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-02-27T00:00Z",
+    "id": "5a95d23d-d08d-4e4d-ba3e-6fa7d86f29c3",
+    "privileges": [
+      {
+        "id": 17592186046003,
+        "name": "Create Tarequest"
+      },
+      {
+        "id": 17592186046009,
+        "name": "Submit Tarequest"
+      },
+      {
+        "id": 17592186046011,
+        "name": "Edit Tarequest"
+      },
+      {
+        "id": 17592186046027,
+        "name": "Create Taactivity"
+      },
+      {
+        "id": 17592186046069,
+        "name": "Editall Tarequest"
+      },
+      {
+        "id": 17592186046112,
+        "name": "Assign Tarequest"
+      },
+      {
+        "id": 17592186046316,
+        "name": "CommentAll TaRequest"
+      },
+      {
+        "id": 17592186046393,
+        "name": "View Request Comment All"
+      },
+      {
+        "id": 17592186046410,
+        "name": "Edit request Comment"
+      },
+      {
+        "id": 17592186046418,
+        "name": "Delete Request Comment"
+      }
+    ],
+    "assignee": "Ranjini",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a71ef10-4507-4e42-a3dc-bd1f6a2ed928",
+        "name": "PHEP GrantProject1"
+      }
+    ],
+    "delegated": "false",
+    "effdate": "2018-03-08T00:00Z",
+    "id": "5aa15c16-4a61-4826-ad3f-5f718b91a10f",
+    "privileges": [
+      {
+        "id": 17592186046003,
+        "name": "Create Tarequest"
+      },
+      {
+        "id": 17592186046005,
+        "name": "Delete Tarequest"
+      },
+      {
+        "id": 17592186046009,
+        "name": "Submit Tarequest"
+      }
+    ],
+    "assignee": "Awardee",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a451fe5-82ed-4aa7-8e37-4a53e9e53c2d",
+        "name": "PHEP"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-12-20T21:35Z",
+    "id": "5a68b7f0-e913-46b2-8d20-e8b79a2c457d",
+    "privileges": [
+      {
+        "id": 17592186046069,
+        "name": "Editall Tarequest"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  },
+  {
+    "scopes": [
+      {
+        "id": "5a71ef10-4507-4e42-a3dc-bd1f6a2ed928",
+        "name": "PHEP GrantProject1"
+      }
+    ],
+    "expdate": "2018-12-20T21:35Z",
+    "delegated": "false",
+    "effdate": "2018-12-10T00:00Z",
+    "id": "5a95d4ba-0ab1-426c-85ba-7fd60e5dd327",
+    "privileges": [
+      {
+        "id": 17592186046061,
+        "name": "Readall Tarequest"
+      }
+    ],
+    "assignee": "rootadmin",
+    "assignor": "rootadmin"
+  }
+]
