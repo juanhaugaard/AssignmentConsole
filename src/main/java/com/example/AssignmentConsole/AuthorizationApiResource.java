@@ -12,6 +12,8 @@ import java.net.URL;
 @Component
 public class AuthorizationApiResource implements AuthorizationAPI {
     public final String subjects = "classpath:subjects.json";
+    public final String scopes = "classpath:scopes.json";
+    public final String privileges = "classpath:privileges.json";
     public final String assignments = "classpath:assignments.json";
 
     private String jsonLoader(final String resource) throws IOException {
@@ -23,6 +25,16 @@ public class AuthorizationApiResource implements AuthorizationAPI {
     @Override
     public String getSubjects() throws IOException {
         return jsonLoader(subjects);
+    }
+
+    @Override
+    public String getScopes() throws IOException {
+        return jsonLoader(scopes);
+    }
+
+    @Override
+    public String getPrivileges() throws IOException {
+        return jsonLoader(privileges);
     }
 
     @Override

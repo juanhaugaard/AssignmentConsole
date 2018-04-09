@@ -1,6 +1,6 @@
 target/
 node_modules/
-/public/bundle.js
+public/
 !.mvn/wrapper/maven-wrapper.jar
 *.bak
 *~

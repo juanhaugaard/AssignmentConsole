@@ -1,6 +1,8 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+require.context("./", true, /^\.\/.*\.html/);
+require.context("./style/", true, /^\.\/.*\.css/);
 
 class App extends Component {
   constructor(props) {

@@ -12,8 +12,10 @@ public class Server {
     private int port;
     private AuthorizationAPI api;
 
-    public final String PATH_SUBJECTS = "/api/subjects";
+    public final String PATH_SUBJECTS    = "/api/subjects";
     public final String PATH_ASSIGNMENTS = "/api/assignments";
+    public final String PATH_PRIVILEGES  = "/api/privileges";
+    public final String PATH_SCOPES      = "/api/scopes";
 
     @Autowired
     public Server(
@@ -25,6 +27,7 @@ public class Server {
 
     @PostConstruct
     public void start() {
+        Spark.staticFiles.externalLocation("/public");
         Spark.staticFiles.location("/public");
         Spark.staticFiles.expireTime(600L);
         Spark.port(port);
@@ -32,6 +35,14 @@ public class Server {
                 "GET, PUT, POST, PATCH, DELETE, OPTIONS", // methods
                 " Accept, Accept-Language, Content-Language, Content-Type"); // headers
         Spark.get(PATH_SUBJECTS, (req, res) -> {
+            res.type("application/json");
+            return api.getSubjects();
+        });
+        Spark.get(PATH_SCOPES, (req, res) -> {
+            res.type("application/json");
+            return api.getSubjects();
+        });
+        Spark.get(PATH_PRIVILEGES, (req, res) -> {
             res.type("application/json");
             return api.getSubjects();
         });
