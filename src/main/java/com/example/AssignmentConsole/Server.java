@@ -1,21 +1,24 @@
 package com.example.AssignmentConsole;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import spark.Spark;
 
 import javax.annotation.PostConstruct;
+import java.nio.file.Paths;
 
+@Slf4j
 @Component
 public class Server {
     private int port;
     private AuthorizationAPI api;
 
-    public final String PATH_SUBJECTS    = "/api/subjects";
+    public final String PATH_SUBJECTS = "/api/subjects";
     public final String PATH_ASSIGNMENTS = "/api/assignments";
-    public final String PATH_PRIVILEGES  = "/api/privileges";
-    public final String PATH_SCOPES      = "/api/scopes";
+    public final String PATH_PRIVILEGES = "/api/privileges";
+    public final String PATH_SCOPES = "/api/scopes";
 
     @Autowired
     public Server(
@@ -27,9 +30,13 @@ public class Server {
 
     @PostConstruct
     public void start() {
-        Spark.staticFiles.externalLocation("/public");
-        Spark.staticFiles.location("/public");
-        Spark.staticFiles.expireTime(600L);
+        String currentDir = Paths.get(".").toAbsolutePath().normalize().toString();
+        currentDir = currentDir.substring(2).replace('\\', '/');
+        final String externalLocation = currentDir + "/public";
+        Spark.staticFiles.externalLocation(externalLocation);
+        log.info("External location set to: {}", externalLocation);
+//        Spark.staticFiles.location("/");
+        Spark.staticFiles.expireTime(3L);
         Spark.port(port);
         enableCORS("*", // origin
                 "GET, PUT, POST, PATCH, DELETE, OPTIONS", // methods
@@ -40,11 +47,11 @@ public class Server {
         });
         Spark.get(PATH_SCOPES, (req, res) -> {
             res.type("application/json");
-            return api.getSubjects();
+            return api.getScopes();
         });
         Spark.get(PATH_PRIVILEGES, (req, res) -> {
             res.type("application/json");
-            return api.getSubjects();
+            return api.getPrivileges();
         });
         Spark.get(PATH_ASSIGNMENTS, (req, res) -> {
             res.type("application/json");

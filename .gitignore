@@ -4,6 +4,8 @@ public/
 !.mvn/wrapper/maven-wrapper.jar
 *.bak
 *~
+### Visual Studio Code ###
+.vscode
 
 ### STS ###
 .apt_generated

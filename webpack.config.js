@@ -10,7 +10,7 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.(css|html|jpg|png)$/, use: 'file-loader?name=[path][name].[ext]&context=./src/webapp/' },
+      { test: /\.(css|html|jpg|png|svg)$/, use: 'file-loader?name=[path][name].[ext]&context=./src/webapp/' },
       { test: /\.js$/,  use: 'babel-loader?cacheDirectory=true', exclude: /(node_modules|bower_components)/ }
     ]
   },
