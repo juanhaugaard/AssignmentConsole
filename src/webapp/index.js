@@ -39,9 +39,9 @@ class App extends Component {
                 <Title />
                 <span>
                     <div>Users:</div>
-                    <Users>
+                    <Users
                         users = {this.state.users}
-                    </Users>
+                    />
                 </span>
             </div>
         );

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class User extends Component {
     render() {
-        <option value={props.key}>{props.value}</option>
+        <option value={this.props.id}>{this.props.value}</option>
     }
 }
 
@@ -14,11 +14,13 @@ function userList(users) {
         return (
             users.map(
                 user => {
-                    return (
-                        <User>
-                            key={user.identifier},
-                            value={user.identifier}
-                        </User>
+                    return ( {
+                        key=user.identifier,
+                        <User 
+                            id={user.identifier} 
+                            value={user.identifier} 
+                        />
+                    }
                     );
                 }
             )

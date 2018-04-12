@@ -31,13 +31,15 @@ public class Server {
     @PostConstruct
     public void start() {
         String currentDir = Paths.get(".").toAbsolutePath().normalize().toString();
-        currentDir = currentDir.substring(2).replace('\\', '/');
+        currentDir = currentDir.replace('\\', '/');
+        if (currentDir.charAt(1) == ':')
+            currentDir = currentDir.substring(2);
         final String externalLocation = currentDir + "/public";
         Spark.staticFiles.externalLocation(externalLocation);
-        log.info("External location set to: {}", externalLocation);
-//        Spark.staticFiles.location("/");
+        Spark.staticFiles.location("/");
         Spark.staticFiles.expireTime(3L);
         Spark.port(port);
+        log.trace("Spark Server init\n\tport: {}\n\tserving: {}", port, externalLocation);
         enableCORS("*", // origin
                 "GET, PUT, POST, PATCH, DELETE, OPTIONS", // methods
                 " Accept, Accept-Language, Content-Language, Content-Type"); // headers
