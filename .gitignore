@@ -6,6 +6,7 @@ public/
 *~
 ### Visual Studio Code ###
 .vscode
+.vscode-*.json
 
 ### STS ###
 .apt_generated
