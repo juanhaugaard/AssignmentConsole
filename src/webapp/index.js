@@ -23,7 +23,7 @@ class App extends Component {
       selectedPrivileges: [],
       selectedAssignment: null,
       selectedScope: null,
-      selectedUser: '**'
+      selectedUser: 'Test'
     };
   }
 
@@ -52,7 +52,7 @@ class App extends Component {
             selectedUser={this.state.selectedUser}
             setSelectedUserCallback={this.setSelectedUserCallback.bind(this)}
           />
-          <span>ROOT selected user: {this.state.selectedUser} </span>
+          <span className='default-margin'>ROOT selected user: {this.state.selectedUser} </span>
         </div>
       </div>
     );

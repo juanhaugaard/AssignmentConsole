@@ -30,7 +30,9 @@ function userList(users, selectedUser) {
 class Users extends Component {
   constructor(props) {
     super(props);
-    this.state = { users: [] };
+    this.state = { };
+    this.state.users = [];
+    this.state.selectedUser = props.selectedUser;
   }
 
   componentDidMount() {
@@ -38,7 +40,9 @@ class Users extends Component {
       console.log('subjects: ' + subjectsJson);
       var newState = Object.assign({}, this.state);
       newState.users = subjectsJson;
+      newState.selectedUser = subjectsJson[0].identifier;
       this.setState(newState);
+      this.props.setSelectedUserCallback(newState.selectedUser);
     });
   }
 
@@ -54,12 +58,13 @@ class Users extends Component {
     return (
       <span>
         <select
-          style={{marginLeft: 10 + 'px', marginRight: 10 + 'px'}}
-          className = 'figure'
+          value={this.props.selectedUser}
+          id='usersSelector'
+          className='default-margin'
           onChange={this.handleChangeFnc.bind(this)} >
-          {userList(this.state.users, this.props.selectedUser)}
+          {userList(this.state.users)}
         </select>
-        Selected user: {this.state.selectedUser}
+        <span className='default-margin'>Selected user: {this.state.selectedUser}</span>
       </span>
     );
   }
