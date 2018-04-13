@@ -20,9 +20,9 @@ class App extends Component {
       // privileges: [],
       // scopes: [],
       // assignemnts: [],
-      // selectedPrivileges: [],
-      // selectedAssignment: null,
-      // selectedScope: null,
+      selectedPrivileges: [],
+      selectedAssignment: null,
+      selectedScope: null,
       selectedUser: '**'
     };
   }
@@ -50,8 +50,9 @@ class App extends Component {
           <span>Users:</span>
           <Users
             selectedUser={this.state.selectedUser}
-            setSelectedUserCallback={this.setSelectedUserCallback.bind(this)()}
+            setSelectedUserCallback={this.setSelectedUserCallback.bind(this)}
           />
+          <span>ROOT selected user: {this.state.selectedUser} </span>
         </div>
       </div>
     );

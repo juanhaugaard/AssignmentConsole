@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchSubjects } from './functions/fetch_subjects';
+import { fetchSubjects } from '../functions/fetch_subjects';
 
 class User extends Component {
   render() {
@@ -7,7 +7,7 @@ class User extends Component {
   }
 }
 
-function userList(users) {
+function userList(users, selectedUser) {
   if (!users) {
     console.log('parameter "users" is undefined');
     return null;
@@ -34,7 +34,6 @@ class Users extends Component {
   }
 
   componentDidMount() {
-    // fetchSubjects.bind(this)();
     fetchSubjects((subjectsJson) => {
       console.log('subjects: ' + subjectsJson);
       var newState = Object.assign({}, this.state);
@@ -45,22 +44,22 @@ class Users extends Component {
 
   handleChangeFnc(event) {
     console.log('handleChange called: ' + event.target.value);
-    var newState = Object.assign({}, this.props.state);
+    var newState = Object.assign({}, this.state);
     newState.selectedUser = event.target.value;
     this.setState(newState);
+    this.props.setSelectedUserCallback(event.target.value);
   }
 
   render() {
-    this.handleChange = this.handleChangeFnc.bind(this);
     return (
       <span>
         <select
           style={{marginLeft: 10 + 'px', marginRight: 10 + 'px'}}
           className = 'figure'
-          onChange={this.handleChange} >
-          {userList(this.props.users)}
+          onChange={this.handleChangeFnc.bind(this)} >
+          {userList(this.state.users, this.props.selectedUser)}
         </select>
-        Selected user: {this.props.selectedUser}
+        Selected user: {this.state.selectedUser}
       </span>
     );
   }
