@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { fetchSubjects } from './functions/fetch_subjects';
 
 class User extends Component {
   render() {
@@ -8,7 +9,8 @@ class User extends Component {
 
 function userList(users) {
   if (!users) {
-    return 'users is undefined';
+    console.log('parameter "users" is undefined');
+    return null;
   } else {
     return (
       users.map(
@@ -26,6 +28,20 @@ function userList(users) {
 }
 
 class Users extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { users: [] };
+  }
+
+  componentDidMount() {
+    // fetchSubjects.bind(this)();
+    fetchSubjects((subjectsJson) => {
+      console.log('subjects: ' + subjectsJson);
+      var newState = Object.assign({}, this.state);
+      newState.users = subjectsJson;
+      this.setState(newState);
+    });
+  }
 
   handleChangeFnc(event) {
     console.log('handleChange called: ' + event.target.value);

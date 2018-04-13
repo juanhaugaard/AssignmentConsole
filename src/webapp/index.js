@@ -1,36 +1,45 @@
 // import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { fetchSubjects } from './functions/fetch_subjects';
 import Title from './components/title_component'
 import Users from './components/users_component'
 require.context('./', true, /^\.\/.*\.html$/);
 require.context('./style/', true, /^\.\/.*\.css$/);
 require.context('./images/', true, /^\.\/.*\.(jpg|png|svg)$/);
-
+/**
+ * 
+ * 
+ * @class App
+ * @extends {Component}
+ */
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
-      selectedUser: '**',
-      privileges: [],
-      selectedPrivileges: [],
-      scopes: [],
-      selectedScope: null,
-      assignemnts: [],
-      selectedAssignment: null
+      // users: [],
+      // privileges: [],
+      // scopes: [],
+      // assignemnts: [],
+      // selectedPrivileges: [],
+      // selectedAssignment: null,
+      // selectedScope: null,
+      selectedUser: '**'
     };
   }
 
-  componentDidMount() {
-    // fetchSubjects.bind(this)();
-    fetchSubjects((subjectsJson) => {
-      console.log('subjects: ' + subjectsJson);
-      var newState = Object.assign({}, this.state);
-      newState.users = subjectsJson;
-      this.setState(newState);
-    });
+  /**
+   * callback function to update state with new selected user
+   *
+   * @param {any} selectedUser the id of the new selected user
+   * @memberof App
+   */
+  setSelectedUserCallback(selectedUser) {
+    // create copy of current state
+    var newState = Object.assign({}, this.state); 
+    // update new state with changed attribute(s)
+    newState.selectedUser = selectedUser;        
+    // set state to be the new state
+    this.setState(newState);                     
   }
 
   render() {
@@ -40,10 +49,8 @@ class App extends Component {
         <div>
           <span>Users:</span>
           <Users
-            users={this.state.users}
             selectedUser={this.state.selectedUser}
-            setState={this.setState}
-            state={this.state}
+            setSelectedUserCallback={this.setSelectedUserCallback.bind(this)()}
           />
         </div>
       </div>
