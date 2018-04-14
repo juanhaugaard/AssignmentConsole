@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { fetchSubjects } from '../functions/fetch_subjects';
+import PropTypes from 'prop-types';
 
 class User extends Component {
   render() {
@@ -7,9 +8,13 @@ class User extends Component {
   }
 }
 
-function userList(users, selectedUser) {
+User.propTypes = {
+  value: PropTypes.string.isRequired
+};
+
+function userList(users) {
   if (!users) {
-    console.log('parameter "users" is undefined');
+    console.error('parameter "users" is undefined');
     return null;
   } else {
     return (
@@ -30,44 +35,51 @@ function userList(users, selectedUser) {
 class Users extends Component {
   constructor(props) {
     super(props);
-    this.state = { };
-    this.state.users = [];
-    this.state.selectedUser = props.selectedUser;
+    this.state = { users: [] };
   }
 
   componentDidMount() {
     fetchSubjects((subjectsJson) => {
-      console.log('subjects: ' + subjectsJson);
+      // create copy of current state
       var newState = Object.assign({}, this.state);
+      // update new state with changed attribute(s)
       newState.users = subjectsJson;
-      newState.selectedUser = subjectsJson[0].identifier;
+      // set state to be the new state
       this.setState(newState);
-      this.props.setSelectedUserCallback(newState.selectedUser);
+      // callback to let parent know which user is cuurently selected
+      if (subjectsJson[0])
+        this.props.selectedUserCallback(subjectsJson[0].identifier);
     });
   }
 
   handleChangeFnc(event) {
     console.log('handleChange called: ' + event.target.value);
-    var newState = Object.assign({}, this.state);
-    newState.selectedUser = event.target.value;
-    this.setState(newState);
-    this.props.setSelectedUserCallback(event.target.value);
+    // callback to let parent know which user is cuurently selected
+    this.props.selectedUserCallback(event.target.value);
   }
 
+  /**
+   * React render function
+   * 
+   * @returns JSX script to be rendered
+   * @memberof Users
+   */
   render() {
     return (
-      <span>
-        <select
-          value={this.props.selectedUser}
-          id='usersSelector'
-          className='default-margin'
-          onChange={this.handleChangeFnc.bind(this)} >
-          {userList(this.state.users)}
-        </select>
-        <span className='default-margin'>Selected user: {this.state.selectedUser}</span>
-      </span>
+      <select
+        value={this.props.selectedUser}
+        id='usersSelector'
+        className='default-margin'
+        onChange={this.handleChangeFnc.bind(this)} >
+        {userList(this.state.users)}
+      </select>
     );
   }
 }
+
+Users.propTypes = {
+  selectedUser: PropTypes.string.isRequired,
+  selectedUserCallback: PropTypes.func.isRequired
+};
 
 export default Users;

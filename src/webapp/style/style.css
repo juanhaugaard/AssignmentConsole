@@ -14,3 +14,33 @@
 .list-group-item:hover {
   background-color: #eee;
 }
+
+.default-margin {
+  margin: 10px;
+  text-align: left;
+}
+
+.default-margin-centered {
+  margin: 10px;
+  text-align: center;
+}
+
+.default-border {
+  border: 10px;
+  text-align: left;
+}
+
+.default-margin-centered {
+  border: 10px;
+  text-align: center;
+}
+
+.default-padding {
+  padding: 10px;
+  text-align: left;
+}
+
+.default-margin-centered {
+  padding: 10px;
+  text-align: center;
+}

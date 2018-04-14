@@ -7,7 +7,7 @@ require.context('./', true, /^\.\/.*\.html$/);
 require.context('./style/', true, /^\.\/.*\.css$/);
 require.context('./images/', true, /^\.\/.*\.(jpg|png|svg)$/);
 /**
- * 
+ * Main calass of the application 
  * 
  * @class App
  * @extends {Component}
@@ -35,24 +35,31 @@ class App extends Component {
    */
   setSelectedUserCallback(selectedUser) {
     // create copy of current state
-    var newState = Object.assign({}, this.state); 
+    var newState = Object.assign({}, this.state);
     // update new state with changed attribute(s)
-    newState.selectedUser = selectedUser;        
+    newState.selectedUser = selectedUser;
     // set state to be the new state
-    this.setState(newState);                     
+    this.setState(newState);
   }
 
+  /**
+   * React render function
+   * 
+   * @returns JSX script to be rendered
+   * @memberof App
+   */
   render() {
     return (
       <div>
         <Title />
         <div>
-          <span>Users:</span>
+          <span className='default-margin'>Users:</span>
           <Users
+            className='default-margin'
             selectedUser={this.state.selectedUser}
-            setSelectedUserCallback={this.setSelectedUserCallback.bind(this)}
+            selectedUserCallback={this.setSelectedUserCallback.bind(this)}
           />
-          <span className='default-margin'>ROOT selected user: {this.state.selectedUser} </span>
+          <span className='default-margin'>selected user: {this.state.selectedUser} </span>
         </div>
       </div>
     );

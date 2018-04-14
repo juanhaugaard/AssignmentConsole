@@ -1,4 +1,3 @@
-/* global fetch */
 
 const SUBJECTS_URL = '/api/subjects';
 
@@ -11,10 +10,10 @@ const fetchSubjects = function () {
     .then((response) => { return response.json() })
     .then((myJson) => {
       if (!this) {
-        console.log('then2 this is undefined');
+        console.error('then2 this is undefined');
       }
       if (!myJson) {
-        console.log('then2 myJson is undefined');
+        console.error('then2 myJson is undefined');
       } else {
         console.log('retrieved JSON=' + JSON.stringify(myJson));
         console.log('current state =' + JSON.stringify(this.state));

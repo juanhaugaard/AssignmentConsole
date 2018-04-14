@@ -1,18 +1,32 @@
 {
-    "extends": "standard",
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true
-        }
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parserOptions": {
+    "env": {
+      "es6": true
     },
-    "rules": {
-        "semi": 0,
-        "space-before-function-paren": 0,
-        "no-useless-constructor": 0,
-        "no-trailing-spaces": 0,
-        "no-multi-spaces": 0,
-        "no-unused-vars": 1
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
     }
+  },
+  "rules": {
+    "semi": 0,
+    "space-before-function-paren": 0,
+    "no-useless-constructor": 0,
+    "no-trailing-spaces": 0,
+    "no-multi-spaces": 0,
+    "no-console": 0,
+    "no-unused-vars": 1,
+    "react/jsx-uses-vars": "error",
+    "react/jsx-uses-react": "error"
+  },
+  "globals": {
+    "console": false,
+    "document": false,
+    "fetch": false,
+    "require": false
+  }
 }
