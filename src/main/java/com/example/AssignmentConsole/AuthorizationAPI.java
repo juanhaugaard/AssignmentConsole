@@ -3,7 +3,7 @@ package com.example.AssignmentConsole;
 import java.io.IOException;
 
 public interface AuthorizationAPI {
-    String getSubjects() throws IOException;
+    String getUrl_subjects() throws IOException;
 
     String getScopes() throws IOException;
 
