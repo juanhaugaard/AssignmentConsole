@@ -1,11 +1,14 @@
 // import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Title from './components/title_component'
-import Users from './components/users_component'
+import Title from './components/title_component';
+import Users from './components/users_component';
+import Scopes from './components/scopes_component';
+import { selectedUserCallback, selectedScopeCallback } from './functions/select_callbacks';
 require.context('./', true, /^\.\/.*\.html$/);
 require.context('./style/', true, /^\.\/.*\.css$/);
 require.context('./images/', true, /^\.\/.*\.(jpg|png|svg)$/);
+
 /**
  * Main calass of the application 
  * 
@@ -21,25 +24,10 @@ class App extends Component {
       // scopes: [],
       // assignemnts: [],
       selectedPrivileges: [],
-      selectedAssignment: null,
-      selectedScope: null,
-      selectedUser: 'Test'
+      selectedAssignment: { id: '', scopes: [], privileges: [] },
+      selectedScope: { id: '', name: '' },
+      selectedUser: { identifier: '', type: '' }
     };
-  }
-
-  /**
-   * callback function to update state with new selected user
-   *
-   * @param {any} selectedUser the id of the new selected user
-   * @memberof App
-   */
-  setSelectedUserCallback(selectedUser) {
-    // create copy of current state
-    var newState = Object.assign({}, this.state);
-    // update new state with changed attribute(s)
-    newState.selectedUser = selectedUser;
-    // set state to be the new state
-    this.setState(newState);
   }
 
   /**
@@ -57,9 +45,22 @@ class App extends Component {
           <Users
             className='default-margin'
             selectedUser={this.state.selectedUser}
-            selectedUserCallback={this.setSelectedUserCallback.bind(this)}
+            selectedUserCallback={selectedUserCallback.bind(this)}
           />
-          <span className='default-margin'>selected user: {this.state.selectedUser} </span>
+          <span className='default-margin'>
+            selected user: {this.state.selectedUser ? this.state.selectedUser.identifier : 'undefined'}
+          </span>
+        </div>
+        <div>
+          <span className='default-margin'>Scopes:</span>
+          <Scopes
+            className='default-margin'
+            selectedScope={this.state.selectedScope}
+            selectedScopeCallback={selectedScopeCallback.bind(this)}
+          />
+          <span className='default-margin'>
+            selected scope: {this.state.selectedScope ? this.state.selectedScope.name : 'undefined'}
+          </span>
         </div>
       </div>
     );

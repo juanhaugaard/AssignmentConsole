@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
-import { fetchSubjects } from '../functions/fetch_subjects';
+import { fetchSubjects } from '../functions/fetch_functions';
 import PropTypes from 'prop-types';
 
 class User extends Component {
+  constructor(props) {
+    super(props);
+    console.log('User.constructor called');
+  }
+
   render() {
-    return <option value={this.props.value}>{this.props.value}</option>;
+    if (!this.props.value) {
+      console.warn('No users defined');
+    } else {
+      return (
+        <option value={this.props.value}>
+          {this.props.value}
+        </option>
+      );
+    }
   }
 }
 
@@ -36,6 +49,7 @@ class Users extends Component {
   constructor(props) {
     super(props);
     this.state = { users: [] };
+    console.log('Users.constructor called');
   }
 
   componentDidMount() {
@@ -48,14 +62,23 @@ class Users extends Component {
       this.setState(newState);
       // callback to let parent know which user is cuurently selected
       if (subjectsJson[0])
-        this.props.selectedUserCallback(subjectsJson[0].identifier);
+        this.props.selectedUserCallback(subjectsJson[0]);
     });
   }
 
+  findUserByIdentifier(identifier) {
+    return this.state.users.find((user) => { user.identifier == identifier });
+  }
+
   handleChangeFnc(event) {
-    console.log('handleChange called: ' + event.target.value);
     // callback to let parent know which user is cuurently selected
-    this.props.selectedUserCallback(event.target.value);
+    let foundUser = this.state.users.find(user => user.identifier == event.target.value);
+    if (!foundUser) {
+      console.log('User changed: ' + 'No user found');
+    } else {
+      console.log('User changed: ' + foundUser.identifier);
+      this.props.selectedUserCallback(foundUser);
+    }
   }
 
   /**
@@ -67,7 +90,7 @@ class Users extends Component {
   render() {
     return (
       <select
-        value={this.props.selectedUser}
+        value={this.props.selectedUser.identifier}
         id='usersSelector'
         className='default-margin'
         onChange={this.handleChangeFnc.bind(this)} >
@@ -78,7 +101,7 @@ class Users extends Component {
 }
 
 Users.propTypes = {
-  selectedUser: PropTypes.string.isRequired,
+  selectedUser: PropTypes.shape({ identifier: '', type: '' }).isRequired,
   selectedUserCallback: PropTypes.func.isRequired
 };
 
