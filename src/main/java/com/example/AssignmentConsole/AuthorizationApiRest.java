@@ -40,7 +40,7 @@ public class AuthorizationApiRest implements AuthorizationAPI {
     }
 
     @Override
-    public String getUrl_subjects() throws IOException {
+    public String getSubjects() throws IOException {
         if (subjects == null)
             subjects = restGet(domainAuthorization + url_subjects);
         return subjects;

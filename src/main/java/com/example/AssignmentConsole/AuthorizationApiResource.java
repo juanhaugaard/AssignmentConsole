@@ -29,7 +29,7 @@ public class AuthorizationApiResource implements AuthorizationAPI {
     }
 
     @Override
-    public String getUrl_subjects() throws IOException {
+    public String getSubjects() throws IOException {
         if (subjects == null)
             subjects = jsonLoader(url_subjects);
         return subjects;

@@ -15,7 +15,7 @@ public class Server {
     private int port;
     private AuthorizationAPI api;
 
-    public final String PATH_SUBJECTS = "/api/url_subjects";
+    public final String PATH_SUBJECTS = "/api/subjects";
     public final String PATH_ASSIGNMENTS = "/api/assignments";
     public final String PATH_PRIVILEGES = "/api/privileges";
     public final String PATH_SCOPES = "/api/scopes";
@@ -45,7 +45,7 @@ public class Server {
                 " Accept, Accept-Language, Content-Language, Content-Type"); // headers
         Spark.get(PATH_SUBJECTS, (req, res) -> {
             res.type("application/json");
-            return api.getUrl_subjects();
+            return api.getSubjects();
         });
         Spark.get(PATH_SCOPES, (req, res) -> {
             res.type("application/json");
