@@ -10,4 +10,6 @@ public interface AuthorizationAPI {
     String getPrivileges() throws IOException;
 
     String getAssignments() throws IOException;
+
+    String putAssignment(final String jsonBody) throws IOException;
 }

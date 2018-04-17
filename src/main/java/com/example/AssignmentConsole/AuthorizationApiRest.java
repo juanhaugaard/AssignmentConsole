@@ -1,21 +1,25 @@
 package com.example.AssignmentConsole;
 
 
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+@Slf4j
 @Component
 @Profile({"!stubs"})
 public class AuthorizationApiRest implements AuthorizationAPI {
     @Value("${authorization-domain}")
     private String domainAuthorization;
+    @Value("${token-prefix}")
+    private String tokenPrefix;
+    @Value("${token-value}")
+    private String tokenValue;
+
     public final String url_subjects = "/api/subjects";
     public final String url_scopes = "/api/scopes";
     public final String url_privileges = "/api/privileges";
@@ -28,15 +32,35 @@ public class AuthorizationApiRest implements AuthorizationAPI {
 
     private final OkHttpClient client = new OkHttpClient();
     public final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    public final String TOKEN = String.format("%s %s", tokenPrefix, tokenValue);
 
-    private String restGet(String url)throws IOException {
-        Request request = new Request.Builder().get()
+    public AuthorizationApiRest() {
+        log.info("constructing {}", this.getClass().getSimpleName());
+    }
+
+    private String restGet(final String url)throws IOException {
+        log.debug("executing GET {}" , url);
+        Request request = new Request.Builder()
+                .addHeader("Authorization", TOKEN)
+                .addHeader("Accept", JSON.toString())
+                .get()
                 .url(url)
                 .build();
-
         Response response = client.newCall(request).execute();
-        String ret=response.body().string();
-        return ret;
+        return response.body().string();
+    }
+
+    private String restPut(final String url, final String jsonBody)throws IOException {
+        log.debug("executing PUT {}: {}" , url, jsonBody);
+        RequestBody requestBody = RequestBody.create(JSON, jsonBody);
+        Request request = new Request.Builder()
+                .addHeader("Authorization", TOKEN)
+                .addHeader("Accept", JSON.toString())
+                .put(requestBody)
+                .url(url)
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
     }
 
     @Override
@@ -65,5 +89,10 @@ public class AuthorizationApiRest implements AuthorizationAPI {
         if (assignments == null)
             assignments = restGet(domainAuthorization + url_assignments);
         return assignments;
+    }
+
+    @Override
+    public String putAssignment(final String jsonBody) throws IOException {
+        return restPut(domainAuthorization + url_assignments, jsonBody);
     }
 }
