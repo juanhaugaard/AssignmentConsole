@@ -28,43 +28,49 @@ public class AuthorizationApiResource implements AuthorizationAPI {
         log.info("constructing {}", this.getClass().getSimpleName());
     }
 
-    private String jsonLoader(final String resource) throws IOException {
+    private String jsonLoader(final String resource) {
+        String ret = null;
         log.debug("executing GET {}" , resource);
-        URL url = ResourceUtils.getURL(resource);
-        Object obj = url.getContent();
-        return (obj instanceof InputStream) ? IOUtils.toString((InputStream) obj) : "";
+        try {
+            URL url = ResourceUtils.getURL(resource);
+            Object obj = url.getContent();
+            ret = (obj instanceof InputStream) ? IOUtils.toString((InputStream) obj) : "";
+        } catch (IOException e) {
+            log.error(e.getMessage());
+        }
+        return ret;
     }
 
     @Override
-    public String getSubjects() throws IOException {
+    public String getSubjects() {
         if (subjects == null)
             subjects = jsonLoader(url_subjects);
         return subjects;
     }
 
     @Override
-    public String getScopes() throws IOException {
+    public String getScopes() {
         if (scopes == null)
             scopes = jsonLoader(url_scopes);
         return scopes;
     }
 
     @Override
-    public String getPrivileges() throws IOException {
+    public String getPrivileges() {
         if (privileges == null)
             privileges = jsonLoader(url_privileges);
         return privileges;
     }
 
     @Override
-    public String getAssignments() throws IOException {
+    public String getAssignments() {
         if (assignments == null)
             assignments = jsonLoader(url_assignments);
         return assignments;
     }
 
     @Override
-    public String putAssignment(String jsonBody) throws IOException {
+    public String putAssignment(String jsonBody) {
         return jsonBody;
     }
 }

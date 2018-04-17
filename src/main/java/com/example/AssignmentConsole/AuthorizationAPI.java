@@ -3,13 +3,13 @@ package com.example.AssignmentConsole;
 import java.io.IOException;
 
 public interface AuthorizationAPI {
-    String getSubjects() throws IOException;
+    String getSubjects();
 
-    String getScopes() throws IOException;
+    String getScopes();
 
-    String getPrivileges() throws IOException;
+    String getPrivileges();
 
-    String getAssignments() throws IOException;
+    String getAssignments();
 
-    String putAssignment(final String jsonBody) throws IOException;
+    String putAssignment(final String jsonBody);
 }
