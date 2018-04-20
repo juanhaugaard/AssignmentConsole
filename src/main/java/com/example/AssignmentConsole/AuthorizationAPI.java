@@ -1,7 +1,5 @@
 package com.example.AssignmentConsole;
 
-import java.io.IOException;
-
 public interface AuthorizationAPI {
     String getSubjects();
 
