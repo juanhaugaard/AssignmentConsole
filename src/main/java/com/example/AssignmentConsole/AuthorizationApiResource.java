@@ -1,6 +1,7 @@
 package com.example.AssignmentConsole;
 
 
+import com.example.AssignmentConsole.dto.ScopeDto;
 import com.example.AssignmentConsole.dto.SubjectDto;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
@@ -26,30 +27,32 @@ public class AuthorizationApiResource implements AuthorizationAPI {
     public final String url_privileges = "classpath:privileges.json";
     public final String url_assignments = "classpath:assignments.json";
     private String privileges;
-    private String scopes;
     private String assignments;
     private Moshi moshi;
     private Type subjectType;
-    private List<SubjectDto> subjectsList;
+    private Type scopeType;
+    private List<SubjectDto> subjectList;
+    private List<ScopeDto> scopeList;
 
     public AuthorizationApiResource() {
         log.info("constructing {}", this.getClass().getSimpleName());
         moshi = new Moshi.Builder().build();
         subjectType = Types.newParameterizedType(List.class, SubjectDto.class);
+        scopeType = Types.newParameterizedType(List.class, ScopeDto.class);
     }
 
     @Override
     public String getSubjects() {
-        if (subjectsList == null) {
+        if (subjectList == null) {
             try {
-                subjectsList = deserializeSubjects(jsonLoader(url_subjects));
+                subjectList = deserializeSubjects(jsonLoader(url_subjects));
             } catch (IOException e) {
                 log.error("deserializing subjects: {}", e.getMessage());
-                subjectsList = null;
+                subjectList = null;
             }
         }
         try {
-            return (subjectsList != null) ? serializeSubjects(subjectsList) : "[]";
+            return (subjectList != null) ? serializeSubjects(subjectList) : "[]";
         } catch (IOException e) {
             log.error("serializing subjects: {}", e.getMessage());
         }
@@ -58,9 +61,20 @@ public class AuthorizationApiResource implements AuthorizationAPI {
 
     @Override
     public String getScopes() {
-        if (scopes == null)
-            scopes = jsonLoader(url_scopes);
-        return scopes;
+        if (scopeList == null) {
+            try {
+                scopeList = deserializeScopes(jsonLoader(url_scopes));
+            } catch (IOException e) {
+                log.error("deserializing scopes: {}", e.getMessage());
+                scopeList = null;
+            }
+        }
+        try {
+            return (scopeList != null) ? serializeScopes(scopeList) : "[]";
+        } catch (IOException e) {
+            log.error("serializing scopes: {}", e.getMessage());
+        }
+        return "[]";
     }
 
     @Override
@@ -103,5 +117,15 @@ public class AuthorizationApiResource implements AuthorizationAPI {
     private String serializeSubjects(final List<SubjectDto> subjects) throws IOException {
         JsonAdapter<List<SubjectDto>> jsonAdapter = moshi.adapter(subjectType);
         return jsonAdapter.toJson(subjects);
+    }
+
+    private List<ScopeDto> deserializeScopes(final String json) throws IOException {
+        JsonAdapter<List<ScopeDto>> jsonAdapter = moshi.adapter(scopeType);
+        return jsonAdapter.fromJson(json);
+    }
+
+    private String serializeScopes(final List<ScopeDto> scopes) throws IOException {
+        JsonAdapter<List<ScopeDto>> jsonAdapter = moshi.adapter(scopeType);
+        return jsonAdapter.toJson(scopes);
     }
 }

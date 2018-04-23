@@ -10,7 +10,7 @@ require.context('./style/', true, /^\.\/.*\.css$/);
 require.context('./images/', true, /^\.\/.*\.(jpg|png|svg)$/);
 
 /**
- * Main calass of the application 
+ * Main class of the application
  * 
  * @class App
  * @extends {Component}
@@ -19,10 +19,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // I don't know if we will need these fields up at this level
+      // even though I know they are needed at lower levels.
       // users: [],
       // privileges: [],
       // scopes: [],
       // assignemnts: [],
+      // These fields are required
       selectedPrivileges: [],
       selectedAssignment: { id: '', scopes: [], privileges: [] },
       selectedScope: { id: '', name: '' },
