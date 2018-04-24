@@ -1,6 +1,12 @@
 package com.example.AssignmentConsole;
 
 
+import com.example.AssignmentConsole.dto.AssignmentDto;
+import com.example.AssignmentConsole.dto.PrivilegeDto;
+import com.example.AssignmentConsole.dto.RoleDto;
+import com.example.AssignmentConsole.dto.ScopeDto;
+import com.example.AssignmentConsole.dto.ScopeTypeDto;
+import com.example.AssignmentConsole.dto.SubjectDto;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -13,33 +19,34 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @Component
 @Profile({"!stubs"})
 public class AuthorizationApiRest implements AuthorizationAPI {
-    public final String url_subjects = "/api/subjects";
-    public final String url_scopes = "/api/scopes";
-    public final String url_scope_types = "/api/scopetypes";
-    public final String url_privileges = "/api/privileges";
-    public final String url_assignments = "/api/assignments";
-    public final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    private static String MSG = "mapping {}: {}";
+    public final MediaType JSON;
     private final OkHttpClient client = new OkHttpClient();
+    private AuthMapper mapper;
+    private List<SubjectDto> subjectList;
+    private List<RoleDto> roleList;
+    private List<ScopeDto> scopeList;
+    private List<ScopeTypeDto> scopeTypeList;
+    private List<PrivilegeDto> privilegeList;
+    private List<AssignmentDto> assignmentList;
     @Value("${authorization-domain}")
     private String domainAuthorization;
     @Value("${token-prefix}")
     private String tokenPrefix;
     @Value("${token-value}")
     private String tokenValue;
-    private String subjects;
-    private String privileges;
-    private String scopes;
-    private String scopeTypes;
-    private String assignments;
     private String TOKEN;
 
     public AuthorizationApiRest() {
         log.info("constructing {}", this.getClass().getSimpleName());
+        JSON = MediaType.parse("application/json; charset=utf-8");
+        mapper = new AuthMapper();
     }
 
     @PostConstruct
@@ -48,67 +55,124 @@ public class AuthorizationApiRest implements AuthorizationAPI {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public String getSubjects() {
-        if (subjects == null)
-            try {
-                subjects = restGet(domainAuthorization + url_subjects);
-            } catch (IOException e) {
-                return e.getMessage();
-            }
-        return subjects;
-    }
-
-    @Override
-    public String getScopes() {
-        if (scopes == null)
-            try {
-                scopes = restGet(domainAuthorization + url_scopes);
-            } catch (IOException e) {
-                return e.getMessage();
-            }
-        return scopes;
-    }
-
-    @Override
-    public String getScopeTypes() {
-      if (scopeTypes == null)
-      try {
-        scopeTypes = restGet(domainAuthorization + url_scope_types);
-      } catch (IOException e) {
-          return e.getMessage();
-      }
-  return scopeTypes;
-}
-  
-    @Override
-    public String getPrivileges() {
-        if (privileges == null)
-            try {
-                privileges = restGet(domainAuthorization + url_privileges);
-            } catch (IOException e) {
-                return e.getMessage();
-            }
-        return privileges;
-    }
-
-    @Override
-    public String getAssignments() {
-        if (assignments == null)
-            try {
-                assignments = restGet(domainAuthorization + url_assignments);
-            } catch (IOException e) {
-                return e.getMessage();
-            }
-        return assignments;
-    }
-
-    @Override
-    public String putAssignment(final String jsonBody) {
+        AUTH_TYPE type = AUTH_TYPE.subjects;
+        String url = domainAuthorization + type.url();
         try {
-            return restPut(domainAuthorization + url_assignments, jsonBody);
+            if (subjectList == null)
+                subjectList = (List<SubjectDto>) mapper.deserialize(restGet(url), type);
+            return mapper.serialize(subjectList, type);
+        } catch (IOException e) {
+            log.error(MSG, type, e.getMessage());
+            subjectList = null;
+        }
+        return AuthMapper.JSON_EMPTY_ARRAY;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public String getScopes() {
+        AUTH_TYPE type = AUTH_TYPE.scopes;
+        String url = domainAuthorization + type.url();
+        try {
+            if (scopeList == null)
+                scopeList = (List<ScopeDto>) mapper.deserialize(restGet(url), type);
+            return mapper.serialize(scopeList, type);
+        } catch (IOException e) {
+            log.error(MSG, type, e.getMessage());
+            scopeList = null;
+        }
+        return AuthMapper.JSON_EMPTY_ARRAY;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public String getRoles() {
+        AUTH_TYPE type = AUTH_TYPE.roles;
+        String url = domainAuthorization + type.url();
+        try {
+            if (roleList == null)
+                roleList = (List<RoleDto>) mapper.deserialize(restGet(url), type);
+            return mapper.serialize(roleList, type);
+        } catch (IOException e) {
+            log.error(MSG, type, e.getMessage());
+            roleList = null;
+        }
+        return AuthMapper.JSON_EMPTY_ARRAY;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public String getScopeTypes() {
+        AUTH_TYPE type = AUTH_TYPE.scopeTypes;
+        String url = domainAuthorization + type.url();
+        try {
+            if (scopeTypeList == null)
+                scopeTypeList = (List<ScopeTypeDto>) mapper.deserialize(restGet(url), type);
+            return mapper.serialize(scopeTypeList, type);
+        } catch (IOException e) {
+            log.error(MSG, type, e.getMessage());
+            scopeTypeList = null;
+        }
+        return AuthMapper.JSON_EMPTY_ARRAY;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public String getPrivileges() {
+        AUTH_TYPE type = AUTH_TYPE.privileges;
+        String url = domainAuthorization + type.url();
+        try {
+            if (privilegeList == null)
+                privilegeList = (List<PrivilegeDto>) mapper.deserialize(restGet(url), type);
+            return mapper.serialize(privilegeList, type);
+        } catch (IOException e) {
+            log.error(MSG, type, e.getMessage());
+            privilegeList = null;
+        }
+        return AuthMapper.JSON_EMPTY_ARRAY;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public String getAssignments() {
+        AUTH_TYPE type = AUTH_TYPE.assignments;
+        String url = domainAuthorization + type.url();
+        try {
+            if (assignmentList == null)
+                assignmentList = (List<AssignmentDto>) mapper.deserialize(restGet(url), type);
+            List<AssignmentDto.Summary> summaries = mapper.assignmentsToSummaries(assignmentList);
+            return mapper.serializeAssignmentSummaries(summaries);
+        } catch (IOException e) {
+            log.error(MSG, type, e.getMessage());
+            assignmentList = null;
+        }
+        return AuthMapper.JSON_EMPTY_ARRAY;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public String putAssignment(final String jsonBody) {
+        AUTH_TYPE type = AUTH_TYPE.assignments;
+        String url = domainAuthorization + type.url();
+        try {
+            return restPut(url, jsonBody);
         } catch (IOException e) {
             return e.getMessage();
         }
+    }
+
+    @Override
+    public String evictCache() {
+        log.debug("Evicting caches");
+        subjectList = null;
+        scopeList = null;
+        roleList = null;
+        scopeTypeList = null;
+        privilegeList = null;
+        assignmentList = null;
+        return "Caches cleared";
     }
 
     private String restGet(final String url) throws IOException {
@@ -122,7 +186,7 @@ public class AuthorizationApiRest implements AuthorizationAPI {
         IOException internal = null;
         try {
             Response response = client.newCall(request).execute();
-            if (response.isSuccessful()) {
+            if (response.isSuccessful() && (response.body() != null)) {
                 String body = response.body().string();
                 log.debug("result code: {}, headers: {}, body: {}", response.code(), response.headers(), body);
                 return body;
@@ -150,7 +214,7 @@ public class AuthorizationApiRest implements AuthorizationAPI {
         IOException internal = null;
         try {
             Response response = client.newCall(request).execute();
-            if (response.isSuccessful()) {
+            if (response.isSuccessful() && (response.body() != null)) {
                 String body = response.body().string();
                 log.debug("result code: {}, headers: {}, body: {}", response.code(), response.headers(), body);
                 return body;

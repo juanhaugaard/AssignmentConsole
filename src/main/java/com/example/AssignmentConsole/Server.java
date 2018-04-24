@@ -18,8 +18,14 @@ public class Server {
     public final String PATH_SUBJECTS = "/api/subjects";
     public final String PATH_ASSIGNMENTS = "/api/assignments";
     public final String PATH_PRIVILEGES = "/api/privileges";
+    public final String PATH_ROLES = "/api/roles";
     public final String PATH_SCOPES = "/api/scopes";
     public final String PATH_SCOPE_TYPES = "/api/scopetypes";
+    public final String PATH_EVICT_CACHE = "/api/evictcache";
+    public final String CONTENT_TYPE_JSON = "application/json";
+    public final String CONTENT_TYPE_HTML = "text/html";
+    public final String GET_MSG = "Mapping GET {}";
+    public final String PUT_MSG = "Mapping PUT {}";
 
     @Autowired
     public Server(
@@ -44,35 +50,46 @@ public class Server {
         enableCORS("*", // origin
                 "GET, PUT, POST, PATCH, DELETE, OPTIONS", // methods
                 " Accept, Accept-Language, Content-Language, Content-Type"); // headers
-        log.info("Mapping GET {}", PATH_SUBJECTS);
+        log.info(GET_MSG, PATH_SUBJECTS);
         Spark.get(PATH_SUBJECTS, (req, res) -> {
-            res.type("application/json");
+            res.type(CONTENT_TYPE_JSON);
             return api.getSubjects();
         });
-        log.info("Mapping GET {}", PATH_SCOPES);
+        log.info(GET_MSG, PATH_SCOPES);
         Spark.get(PATH_SCOPES, (req, res) -> {
-            res.type("application/json");
+            res.type(CONTENT_TYPE_JSON);
             return api.getScopes();
         });
-        log.info("Mapping GET {}", PATH_SCOPE_TYPES);
+        log.info(GET_MSG, PATH_SCOPE_TYPES);
         Spark.get(PATH_SCOPE_TYPES, (req, res) -> {
-          res.type("application/json");
+          res.type(CONTENT_TYPE_JSON);
           return api.getScopeTypes();
         });
-        log.info("Mapping GET {}", PATH_PRIVILEGES);
+        log.info(GET_MSG, PATH_PRIVILEGES);
         Spark.get(PATH_PRIVILEGES, (req, res) -> {
-            res.type("application/json");
+            res.type(CONTENT_TYPE_JSON);
             return api.getPrivileges();
         });
-        log.info("Mapping GET {}", PATH_ASSIGNMENTS);
+        log.info(GET_MSG, PATH_ROLES);
+        Spark.get(PATH_ROLES, (req, res) -> {
+            res.type(CONTENT_TYPE_JSON);
+            return api.getRoles();
+        });
+        log.info(GET_MSG, PATH_ASSIGNMENTS);
         Spark.get(PATH_ASSIGNMENTS, (req, res) -> {
-            res.type("application/json");
+            res.type(CONTENT_TYPE_JSON);
             return api.getAssignments();
         });
-        log.info("Mapping PUT {}", PATH_ASSIGNMENTS);
+        log.info(PUT_MSG, PATH_ASSIGNMENTS);
         Spark.put(PATH_ASSIGNMENTS, (req, res) -> {
-            res.type("application/json");
+            res.type(CONTENT_TYPE_JSON);
             return api.putAssignment(req.body());
+        });
+        log.info(GET_MSG, PATH_EVICT_CACHE);
+        Spark.get(PATH_EVICT_CACHE, (req, res) -> {
+            res.type(CONTENT_TYPE_HTML);
+            String result = api.evictCache();
+            return "<html><body>"+result+"</body></html>";
         });
     }
 
@@ -93,7 +110,7 @@ public class Server {
             response.header("Access-Control-Allow-Origin", origin);
             response.header("Access-Control-Request-Method", methods);
             response.header("Access-Control-Allow-Headers", headers);
-            response.type("application/json");
+            response.type(CONTENT_TYPE_JSON);
         });
     }
 }

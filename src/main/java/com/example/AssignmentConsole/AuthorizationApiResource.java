@@ -3,12 +3,10 @@ package com.example.AssignmentConsole;
 
 import com.example.AssignmentConsole.dto.AssignmentDto;
 import com.example.AssignmentConsole.dto.PrivilegeDto;
+import com.example.AssignmentConsole.dto.RoleDto;
 import com.example.AssignmentConsole.dto.ScopeDto;
 import com.example.AssignmentConsole.dto.ScopeTypeDto;
 import com.example.AssignmentConsole.dto.SubjectDto;
-import com.squareup.moshi.JsonAdapter;
-import com.squareup.moshi.Moshi;
-import com.squareup.moshi.Types;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -17,30 +15,17 @@ import spark.utils.ResourceUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Component
 @Profile({"stubs"})
 public class AuthorizationApiResource implements AuthorizationAPI {
-    public static final String JSON_EMPTY_ARRAY = "[]";
-    public final String url_subjects = "classpath:subjects.json";
-    public final String url_scopes = "classpath:scopes.json";
-    public final String url_scopeTypes = "classpath:scopetypes.json";
-    public final String url_privileges = "classpath:privileges.json";
-    public final String url_assignments = "classpath:assignments.json";
-    private Moshi moshi;
-    private Type subjectType;
-    private Type scopeType;
-    private Type scopeTypeType;
-    private Type privilegeType;
-    private Type assignmentType;
-    private Type assignmentSummaryType;
+    private static String MSG = "mapping {}: {}";
+    private AuthMapper mapper;
     private List<SubjectDto> subjectList;
+    private List<RoleDto> roleList;
     private List<ScopeDto> scopeList;
     private List<ScopeTypeDto> scopeTypeList;
     private List<PrivilegeDto> privilegeList;
@@ -48,113 +33,116 @@ public class AuthorizationApiResource implements AuthorizationAPI {
 
     public AuthorizationApiResource() {
         log.info("constructing {}", this.getClass().getSimpleName());
-        moshi = new Moshi.Builder().build();
-        subjectType = Types.newParameterizedType(List.class, SubjectDto.class);
-        scopeType = Types.newParameterizedType(List.class, ScopeDto.class);
-        scopeTypeType = Types.newParameterizedType(List.class, ScopeTypeDto.class);
-        privilegeType = Types.newParameterizedType(List.class, PrivilegeDto.class);
-        assignmentType = Types.newParameterizedType(List.class, AssignmentDto.class);
-        assignmentSummaryType = Types.newParameterizedType(List.class, AssignmentDto.Summary.class);
+        mapper = new AuthMapper();
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public String getSubjects() {
-        if (subjectList == null) {
-            try {
-                subjectList = deserializeSubjects(jsonLoader(url_subjects));
-            } catch (IOException e) {
-                log.error("deserializing subjects: {}", e.getMessage());
-                subjectList = null;
-            }
-        }
+        AUTH_TYPE type = AUTH_TYPE.subjects;
         try {
-            return (subjectList != null) ? serializeSubjects(subjectList) : JSON_EMPTY_ARRAY;
+            if (subjectList == null)
+                subjectList = (List<SubjectDto>) mapper.deserialize(jsonLoader(type.resource()), type);
+            return mapper.serialize(subjectList, type);
         } catch (IOException e) {
-            log.error("serializing subjects: {}", e.getMessage());
+            log.error(MSG, type, e.getMessage());
+            subjectList = null;
         }
-        return JSON_EMPTY_ARRAY;
+        return AuthMapper.JSON_EMPTY_ARRAY;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public String getScopes() {
-        if (scopeList == null) {
-            try {
-                scopeList = deserializeScopes(jsonLoader(url_scopes));
-            } catch (IOException e) {
-                log.error("deserializing scopes: {}", e.getMessage());
-                scopeList = null;
-            }
-        }
+        AUTH_TYPE type = AUTH_TYPE.scopes;
         try {
-            return (scopeList != null) ? serializeScopes(scopeList) : JSON_EMPTY_ARRAY;
+            if (scopeList == null)
+                scopeList = (List<ScopeDto>) mapper.deserialize(jsonLoader(type.resource()), type);
+            return mapper.serialize(scopeList, type);
         } catch (IOException e) {
-            log.error("serializing scopes: {}", e.getMessage());
+            log.error(MSG, type, e.getMessage());
+            scopeList = null;
         }
-        return JSON_EMPTY_ARRAY;
+        return AuthMapper.JSON_EMPTY_ARRAY;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public String getScopeTypes() {
-        if (scopeTypeList == null) {
-            try {
-                scopeTypeList = deserializeScopeTypes(jsonLoader(url_scopeTypes));
-            } catch (IOException e) {
-                log.error("deserializing scope types: {}", e.getMessage());
-                scopeTypeList = null;
-            }
-        }
+        AUTH_TYPE type = AUTH_TYPE.scopeTypes;
         try {
-            return (scopeTypeList != null) ? serializeScopeTypes(scopeTypeList) : JSON_EMPTY_ARRAY;
+            if (scopeTypeList == null)
+                scopeTypeList = (List<ScopeTypeDto>) mapper.deserialize(jsonLoader(type.resource()), type);
+            return mapper.serialize(scopeTypeList, type);
         } catch (IOException e) {
-            log.error("serializing scope types: {}", e.getMessage());
+            log.error(MSG, type, e.getMessage());
+            scopeTypeList = null;
         }
-        return JSON_EMPTY_ARRAY;
+        return AuthMapper.JSON_EMPTY_ARRAY;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public String getPrivileges() {
-        if (privilegeList == null) {
-            try {
-                privilegeList = deserializePrivileges(jsonLoader(url_privileges));
-            } catch (IOException e) {
-                log.error("deserializing privileges: {}", e.getMessage());
-                privilegeList = null;
-            }
-        }
+        AUTH_TYPE type = AUTH_TYPE.privileges;
         try {
-            return (privilegeList != null) ? serializePrivileges(privilegeList) : JSON_EMPTY_ARRAY;
+            if (privilegeList == null)
+                privilegeList = (List<PrivilegeDto>) mapper.deserialize(jsonLoader(type.resource()), type);
+            return mapper.serialize(privilegeList, type);
         } catch (IOException e) {
-            log.error("serializing privileges: {}", e.getMessage());
+            log.error(MSG, type, e.getMessage());
+            privilegeList = null;
         }
-        return JSON_EMPTY_ARRAY;
+        return AuthMapper.JSON_EMPTY_ARRAY;
     }
 
     @Override
-    public String getAssignments() {
-        String ret = JSON_EMPTY_ARRAY;
-        if (assignmentList == null) {
-            try {
-                assignmentList = deserializeAssignments(jsonLoader(url_assignments));
-            } catch (IOException e) {
-                log.error("deserializing assignments: {}", e.getMessage());
-                assignmentList = null;
-            }
-        }
+    @SuppressWarnings("unchecked")
+    public String getRoles() {
+        AUTH_TYPE type = AUTH_TYPE.roles;
         try {
-            if (assignmentList != null) {
-                List<AssignmentDto.Summary> summaries = assignmentsToSummaries(assignmentList);
-                ret = serializeAssignmentSummaries(summaries);
-            }
+            if (roleList == null)
+                roleList = (List<RoleDto>) mapper.deserialize(jsonLoader(type.resource()), type);
+            return mapper.serialize(roleList, type);
         } catch (IOException e) {
-            log.error("serializing privileges: {}", e.getMessage());
+            log.error(MSG, type, e.getMessage());
+            roleList = null;
         }
-        return ret;
+        return AuthMapper.JSON_EMPTY_ARRAY;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public String getAssignments() {
+        AUTH_TYPE type = AUTH_TYPE.assignments;
+        try {
+            if (assignmentList == null)
+                assignmentList = (List<AssignmentDto>) mapper.deserialize(jsonLoader(type.resource()), type);
+            List<AssignmentDto.Summary> summaries = mapper.assignmentsToSummaries(assignmentList);
+            return mapper.serializeAssignmentSummaries(summaries);
+        } catch (IOException e) {
+            log.error(MSG, type, e.getMessage());
+            assignmentList = null;
+        }
+        return AuthMapper.JSON_EMPTY_ARRAY;
     }
 
     @Override
     public String putAssignment(String jsonBody) {
         log.info("putAssignment() invoked, json: {}", jsonBody);
         return jsonBody;
+    }
+
+    @Override
+    public String evictCache() {
+        log.debug("Evicting caches");
+        subjectList = null;
+        scopeList = null;
+        roleList = null;
+        scopeTypeList = null;
+        privilegeList = null;
+        assignmentList = null;
+        return "Caches cleared";
     }
 
     private String jsonLoader(final String resource) {
@@ -169,92 +157,4 @@ public class AuthorizationApiResource implements AuthorizationAPI {
         }
         return ret;
     }
-
-    private List<SubjectDto> deserializeSubjects(final String json) throws IOException {
-        JsonAdapter<List<SubjectDto>> jsonAdapter = moshi.adapter(subjectType);
-        return jsonAdapter.fromJson(json);
-    }
-
-    private String serializeSubjects(final List<SubjectDto> subjects) throws IOException {
-        JsonAdapter<List<SubjectDto>> jsonAdapter = moshi.adapter(subjectType);
-        return jsonAdapter.toJson(subjects);
-    }
-
-    private List<ScopeDto> deserializeScopes(final String json) throws IOException {
-        JsonAdapter<List<ScopeDto>> jsonAdapter = moshi.adapter(scopeType);
-        return jsonAdapter.fromJson(json);
-    }
-
-    private String serializeScopes(final List<ScopeDto> scopes) throws IOException {
-        JsonAdapter<List<ScopeDto>> jsonAdapter = moshi.adapter(scopeType);
-        return jsonAdapter.toJson(scopes);
-    }
-
-    private List<ScopeTypeDto> deserializeScopeTypes(final String json) throws IOException {
-        JsonAdapter<List<ScopeTypeDto>> jsonAdapter = moshi.adapter(scopeTypeType);
-        return jsonAdapter.fromJson(json);
-    }
-
-    private String serializeScopeTypes(final List<ScopeTypeDto> scopetypes) throws IOException {
-        JsonAdapter<List<ScopeTypeDto>> jsonAdapter = moshi.adapter(scopeTypeType);
-        return jsonAdapter.toJson(scopetypes);
-    }
-
-    private List<PrivilegeDto> deserializePrivileges(final String json) throws IOException {
-        JsonAdapter<List<PrivilegeDto>> jsonAdapter = moshi.adapter(privilegeType);
-        return jsonAdapter.fromJson(json);
-    }
-
-    private String serializePrivileges(final List<PrivilegeDto> privileges) throws IOException {
-        JsonAdapter<List<PrivilegeDto>> jsonAdapter = moshi.adapter(privilegeType);
-        return jsonAdapter.toJson(privileges);
-    }
-
-    private List<AssignmentDto> deserializeAssignments(final String json) throws IOException {
-        JsonAdapter<List<AssignmentDto>> jsonAdapter = moshi.adapter(assignmentType);
-        return jsonAdapter.fromJson(json);
-    }
-
-    private String serializeAssignments(final List<AssignmentDto> assignments) throws IOException {
-        JsonAdapter<List<AssignmentDto>> jsonAdapter = moshi.adapter(assignmentType);
-        return jsonAdapter.toJson(assignments);
-    }
-
-    private String serializeAssignmentSummaries(final List<AssignmentDto.Summary> assignmentSummaries) throws IOException {
-        JsonAdapter<List<AssignmentDto.Summary>> jsonAdapter = moshi.adapter(assignmentSummaryType);
-        return jsonAdapter.toJson(assignmentSummaries);
-    }
-
-    private List<AssignmentDto.Summary> assignmentsToSummaries(final List<AssignmentDto> assignments) {
-        List<AssignmentDto.Summary> ret = new ArrayList<>();
-        ret.addAll(assignments
-            .stream()
-            .map(a->a.toSummary())
-            .collect(Collectors.toList()));
-        return ret;
-    }
 }
-
-// private List<SubjectDto> deserializeSubjects(final String json) throws IOException {
-//   // JsonAdapter<List<SubjectDto>> jsonAdapter = moshi.adapter(subjectType);
-//   Type subjectType = Types.newParameterizedType(List.class, Object.class);
-//   JsonAdapter<List<Map<String,Object>>> jsonAdapter = moshi.adapter(subjectType);
-//   List<Map<String,Object>> ret = jsonAdapter.fromJson(json);
-//   Map<String,Object> item = ret.get(0);
-//   String key;
-//   key = "identifier";
-//   if (item.containsKey(key)) {
-//     Object value = item.get(key);
-//     log.info("{}: {}", key, value);
-//   } else {
-//     log.warn("key {} not found", key);
-//   }
-//   key = "type";
-//   if (item.containsKey(key)) {
-//     Object value = item.get(key);
-//     log.info("{}: {}", key, value);
-//   } else {
-//     log.warn("key {} not found", key);
-//   }
-//   return null;
-// }

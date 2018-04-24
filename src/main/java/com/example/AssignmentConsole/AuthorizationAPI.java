@@ -9,7 +9,11 @@ public interface AuthorizationAPI {
 
     String getPrivileges();
 
+    String getRoles();
+
     String getAssignments();
 
     String putAssignment(final String jsonBody);
+
+    String evictCache();
 }
