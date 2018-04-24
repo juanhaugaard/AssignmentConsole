@@ -5,6 +5,8 @@ public interface AuthorizationAPI {
 
     String getScopes();
 
+    String getScopeTypes();
+
     String getPrivileges();
 
     String getAssignments();

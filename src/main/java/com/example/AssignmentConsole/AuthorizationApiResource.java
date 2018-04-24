@@ -1,7 +1,10 @@
 package com.example.AssignmentConsole;
 
 
+import com.example.AssignmentConsole.dto.AssignmentDto;
+import com.example.AssignmentConsole.dto.PrivilegeDto;
 import com.example.AssignmentConsole.dto.ScopeDto;
+import com.example.AssignmentConsole.dto.ScopeTypeDto;
 import com.example.AssignmentConsole.dto.SubjectDto;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
@@ -16,29 +19,42 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
 @Profile({"stubs"})
 public class AuthorizationApiResource implements AuthorizationAPI {
+    public static final String JSON_EMPTY_ARRAY = "[]";
     public final String url_subjects = "classpath:subjects.json";
     public final String url_scopes = "classpath:scopes.json";
+    public final String url_scopeTypes = "classpath:scopetypes.json";
     public final String url_privileges = "classpath:privileges.json";
     public final String url_assignments = "classpath:assignments.json";
-    private String privileges;
-    private String assignments;
     private Moshi moshi;
     private Type subjectType;
     private Type scopeType;
+    private Type scopeTypeType;
+    private Type privilegeType;
+    private Type assignmentType;
+    private Type assignmentSummaryType;
     private List<SubjectDto> subjectList;
     private List<ScopeDto> scopeList;
+    private List<ScopeTypeDto> scopeTypeList;
+    private List<PrivilegeDto> privilegeList;
+    private List<AssignmentDto> assignmentList;
 
     public AuthorizationApiResource() {
         log.info("constructing {}", this.getClass().getSimpleName());
         moshi = new Moshi.Builder().build();
         subjectType = Types.newParameterizedType(List.class, SubjectDto.class);
         scopeType = Types.newParameterizedType(List.class, ScopeDto.class);
+        scopeTypeType = Types.newParameterizedType(List.class, ScopeTypeDto.class);
+        privilegeType = Types.newParameterizedType(List.class, PrivilegeDto.class);
+        assignmentType = Types.newParameterizedType(List.class, AssignmentDto.class);
+        assignmentSummaryType = Types.newParameterizedType(List.class, AssignmentDto.Summary.class);
     }
 
     @Override
@@ -52,11 +68,11 @@ public class AuthorizationApiResource implements AuthorizationAPI {
             }
         }
         try {
-            return (subjectList != null) ? serializeSubjects(subjectList) : "[]";
+            return (subjectList != null) ? serializeSubjects(subjectList) : JSON_EMPTY_ARRAY;
         } catch (IOException e) {
             log.error("serializing subjects: {}", e.getMessage());
         }
-        return "[]";
+        return JSON_EMPTY_ARRAY;
     }
 
     @Override
@@ -70,29 +86,74 @@ public class AuthorizationApiResource implements AuthorizationAPI {
             }
         }
         try {
-            return (scopeList != null) ? serializeScopes(scopeList) : "[]";
+            return (scopeList != null) ? serializeScopes(scopeList) : JSON_EMPTY_ARRAY;
         } catch (IOException e) {
             log.error("serializing scopes: {}", e.getMessage());
         }
-        return "[]";
+        return JSON_EMPTY_ARRAY;
+    }
+
+    @Override
+    public String getScopeTypes() {
+        if (scopeTypeList == null) {
+            try {
+                scopeTypeList = deserializeScopeTypes(jsonLoader(url_scopeTypes));
+            } catch (IOException e) {
+                log.error("deserializing scope types: {}", e.getMessage());
+                scopeTypeList = null;
+            }
+        }
+        try {
+            return (scopeTypeList != null) ? serializeScopeTypes(scopeTypeList) : JSON_EMPTY_ARRAY;
+        } catch (IOException e) {
+            log.error("serializing scope types: {}", e.getMessage());
+        }
+        return JSON_EMPTY_ARRAY;
     }
 
     @Override
     public String getPrivileges() {
-        if (privileges == null)
-            privileges = jsonLoader(url_privileges);
-        return privileges;
+        if (privilegeList == null) {
+            try {
+                privilegeList = deserializePrivileges(jsonLoader(url_privileges));
+            } catch (IOException e) {
+                log.error("deserializing privileges: {}", e.getMessage());
+                privilegeList = null;
+            }
+        }
+        try {
+            return (privilegeList != null) ? serializePrivileges(privilegeList) : JSON_EMPTY_ARRAY;
+        } catch (IOException e) {
+            log.error("serializing privileges: {}", e.getMessage());
+        }
+        return JSON_EMPTY_ARRAY;
     }
 
     @Override
     public String getAssignments() {
-        if (assignments == null)
-            assignments = jsonLoader(url_assignments);
-        return assignments;
+        String ret = JSON_EMPTY_ARRAY;
+        if (assignmentList == null) {
+            try {
+                assignmentList = deserializeAssignments(jsonLoader(url_assignments));
+            } catch (IOException e) {
+                log.error("deserializing assignments: {}", e.getMessage());
+                assignmentList = null;
+            }
+        }
+        try {
+            if (assignmentList != null) {
+                List<AssignmentDto.Summary> summaries = assignmentsToSummaries(assignmentList);
+                ret = serializeAssignmentSummaries(summaries);
+            }
+        } catch (IOException e) {
+            log.error("serializing privileges: {}", e.getMessage());
+        }
+        return ret;
     }
 
     @Override
     public String putAssignment(String jsonBody) {
+        log.info("putAssignment() invoked, json: {}", jsonBody);
         return jsonBody;
     }
 
@@ -128,4 +189,72 @@ public class AuthorizationApiResource implements AuthorizationAPI {
         JsonAdapter<List<ScopeDto>> jsonAdapter = moshi.adapter(scopeType);
         return jsonAdapter.toJson(scopes);
     }
+
+    private List<ScopeTypeDto> deserializeScopeTypes(final String json) throws IOException {
+        JsonAdapter<List<ScopeTypeDto>> jsonAdapter = moshi.adapter(scopeTypeType);
+        return jsonAdapter.fromJson(json);
+    }
+
+    private String serializeScopeTypes(final List<ScopeTypeDto> scopetypes) throws IOException {
+        JsonAdapter<List<ScopeTypeDto>> jsonAdapter = moshi.adapter(scopeTypeType);
+        return jsonAdapter.toJson(scopetypes);
+    }
+
+    private List<PrivilegeDto> deserializePrivileges(final String json) throws IOException {
+        JsonAdapter<List<PrivilegeDto>> jsonAdapter = moshi.adapter(privilegeType);
+        return jsonAdapter.fromJson(json);
+    }
+
+    private String serializePrivileges(final List<PrivilegeDto> privileges) throws IOException {
+        JsonAdapter<List<PrivilegeDto>> jsonAdapter = moshi.adapter(privilegeType);
+        return jsonAdapter.toJson(privileges);
+    }
+
+    private List<AssignmentDto> deserializeAssignments(final String json) throws IOException {
+        JsonAdapter<List<AssignmentDto>> jsonAdapter = moshi.adapter(assignmentType);
+        return jsonAdapter.fromJson(json);
+    }
+
+    private String serializeAssignments(final List<AssignmentDto> assignments) throws IOException {
+        JsonAdapter<List<AssignmentDto>> jsonAdapter = moshi.adapter(assignmentType);
+        return jsonAdapter.toJson(assignments);
+    }
+
+    private String serializeAssignmentSummaries(final List<AssignmentDto.Summary> assignmentSummaries) throws IOException {
+        JsonAdapter<List<AssignmentDto.Summary>> jsonAdapter = moshi.adapter(assignmentSummaryType);
+        return jsonAdapter.toJson(assignmentSummaries);
+    }
+
+    private List<AssignmentDto.Summary> assignmentsToSummaries(final List<AssignmentDto> assignments) {
+        List<AssignmentDto.Summary> ret = new ArrayList<>();
+        ret.addAll(assignments
+            .stream()
+            .map(a->a.toSummary())
+            .collect(Collectors.toList()));
+        return ret;
+    }
 }
+
+// private List<SubjectDto> deserializeSubjects(final String json) throws IOException {
+//   // JsonAdapter<List<SubjectDto>> jsonAdapter = moshi.adapter(subjectType);
+//   Type subjectType = Types.newParameterizedType(List.class, Object.class);
+//   JsonAdapter<List<Map<String,Object>>> jsonAdapter = moshi.adapter(subjectType);
+//   List<Map<String,Object>> ret = jsonAdapter.fromJson(json);
+//   Map<String,Object> item = ret.get(0);
+//   String key;
+//   key = "identifier";
+//   if (item.containsKey(key)) {
+//     Object value = item.get(key);
+//     log.info("{}: {}", key, value);
+//   } else {
+//     log.warn("key {} not found", key);
+//   }
+//   key = "type";
+//   if (item.containsKey(key)) {
+//     Object value = item.get(key);
+//     log.info("{}: {}", key, value);
+//   } else {
+//     log.warn("key {} not found", key);
+//   }
+//   return null;
+// }

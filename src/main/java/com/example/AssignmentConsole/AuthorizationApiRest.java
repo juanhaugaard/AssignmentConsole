@@ -20,6 +20,7 @@ import java.io.IOException;
 public class AuthorizationApiRest implements AuthorizationAPI {
     public final String url_subjects = "/api/subjects";
     public final String url_scopes = "/api/scopes";
+    public final String url_scope_types = "/api/scopetypes";
     public final String url_privileges = "/api/privileges";
     public final String url_assignments = "/api/assignments";
     public final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -33,6 +34,7 @@ public class AuthorizationApiRest implements AuthorizationAPI {
     private String subjects;
     private String privileges;
     private String scopes;
+    private String scopeTypes;
     private String assignments;
     private String TOKEN;
 
@@ -67,6 +69,17 @@ public class AuthorizationApiRest implements AuthorizationAPI {
         return scopes;
     }
 
+    @Override
+    public String getScopeTypes() {
+      if (scopeTypes == null)
+      try {
+        scopeTypes = restGet(domainAuthorization + url_scope_types);
+      } catch (IOException e) {
+          return e.getMessage();
+      }
+  return scopeTypes;
+}
+  
     @Override
     public String getPrivileges() {
         if (privileges == null)
