@@ -8,6 +8,6 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class SubjectDto {
-  private String identifier;
-  private String type;
+    private String identifier;
+    private String type;
 }

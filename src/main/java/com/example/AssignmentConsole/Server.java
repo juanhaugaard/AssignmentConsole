@@ -12,9 +12,6 @@ import java.nio.file.Paths;
 @Slf4j
 @Component
 public class Server {
-    private int port;
-    private AuthorizationAPI api;
-
     public final String PATH_SUBJECTS = "/api/subjects";
     public final String PATH_ASSIGNMENTS = "/api/assignments";
     public final String PATH_PRIVILEGES = "/api/privileges";
@@ -26,6 +23,8 @@ public class Server {
     public final String CONTENT_TYPE_HTML = "text/html";
     public final String GET_MSG = "Mapping GET {}";
     public final String PUT_MSG = "Mapping PUT {}";
+    private int port;
+    private AuthorizationAPI api;
 
     @Autowired
     public Server(
@@ -62,8 +61,8 @@ public class Server {
         });
         log.info(GET_MSG, PATH_SCOPE_TYPES);
         Spark.get(PATH_SCOPE_TYPES, (req, res) -> {
-          res.type(CONTENT_TYPE_JSON);
-          return api.getScopeTypes();
+            res.type(CONTENT_TYPE_JSON);
+            return api.getScopeTypes();
         });
         log.info(GET_MSG, PATH_PRIVILEGES);
         Spark.get(PATH_PRIVILEGES, (req, res) -> {
@@ -89,7 +88,7 @@ public class Server {
         Spark.get(PATH_EVICT_CACHE, (req, res) -> {
             res.type(CONTENT_TYPE_HTML);
             String result = api.evictCache();
-            return "<html><body>"+result+"</body></html>";
+            return "<html><body>" + result + "</body></html>";
         });
     }
 

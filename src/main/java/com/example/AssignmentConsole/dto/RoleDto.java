@@ -18,6 +18,7 @@ public class RoleDto {
     private String name;
     private List<PrivilegeDto> privileges;
     private List<PrivilegeDto> delegableprivileges;
+
     public RoleDto() {
         privileges = new ArrayList<>();
         delegableprivileges = new ArrayList<>();

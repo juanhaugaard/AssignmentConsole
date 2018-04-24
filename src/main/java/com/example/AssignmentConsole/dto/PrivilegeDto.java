@@ -8,9 +8,9 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class PrivilegeDto {
-  private String id;
-  private String name;
-  private String system;
-  private String object;
-  private String action;
+    private String id;
+    private String name;
+    private String system;
+    private String object;
+    private String action;
 }

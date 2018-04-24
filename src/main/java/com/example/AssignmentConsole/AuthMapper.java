@@ -70,28 +70,28 @@ public class AuthMapper {
         return ret;
     }
 
-    public String serialize (List<?> list, AUTH_TYPE type) throws IOException {
+    public String serialize(List<?> list, AUTH_TYPE type) throws IOException {
         String ret = JSON_EMPTY_ARRAY;
         if (list == null || type == null)
             return ret;
         switch (type) {
             case subjects:
-                ret = serializeSubjects((List<SubjectDto>)list);
+                ret = serializeSubjects((List<SubjectDto>) list);
                 break;
             case privileges:
-                ret = serializePrivileges((List<PrivilegeDto>)list);
+                ret = serializePrivileges((List<PrivilegeDto>) list);
                 break;
             case roles:
-                ret = serializeRoles((List<RoleDto>)list);
+                ret = serializeRoles((List<RoleDto>) list);
                 break;
             case scopes:
-                ret = serializeScopes((List<ScopeDto>)list);
+                ret = serializeScopes((List<ScopeDto>) list);
                 break;
             case scopeTypes:
-                ret = serializeScopeTypes((List<ScopeTypeDto>)list);
+                ret = serializeScopeTypes((List<ScopeTypeDto>) list);
                 break;
             case assignments:
-                ret = serializeAssignments((List<AssignmentDto>)list);
+                ret = serializeAssignments((List<AssignmentDto>) list);
                 break;
             default:
                 throw new IllegalArgumentException("Not implemented Authorization type: " + type);
@@ -168,7 +168,7 @@ public class AuthMapper {
         List<AssignmentDto.Summary> ret = new ArrayList<>();
         ret.addAll(assignments
                 .stream()
-                .map(a->a.toSummary())
+                .map(a -> a.toSummary())
                 .collect(Collectors.toList()));
         return ret;
     }

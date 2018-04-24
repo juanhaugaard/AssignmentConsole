@@ -8,6 +8,6 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class ScopeTypeDto {
-  private String scopetype;
-  private String parent;
+    private String scopetype;
+    private String parent;
 }
