@@ -7,7 +7,9 @@ import java.util.stream.Collectors;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Data
 @ToString
 @EqualsAndHashCode
@@ -69,14 +71,26 @@ public class AssignmentDto {
         ret.setDelegated(Boolean.parseBoolean(assignment.getDelegated()));
         ret.setAssignee(ret.getDelegated()?assignment.getDelegatee():assignment.getAssignee());
         ret.setAssignor(ret.getDelegated()?assignment.getDelegator():assignment.getAssignor());
-        ret.getScopes().addAll(assignment.getScopes()
-            .stream()
-            .map(s->s.id)
-            .collect(Collectors.toList()));
-        ret.getPrivileges().addAll(assignment.getPrivileges()
-            .stream()
-            .map(p->p.id)
-            .collect(Collectors.toList()));
+
+        List<ScopeType> scopes = assignment.getScopes();
+        if (scopes == null || scopes.isEmpty()) {
+            log.warn("Scope list is empty");
+        } else {
+            ret.getScopes().addAll(assignment.getScopes()
+                    .stream()
+                    .map(s->s.id)
+                    .collect(Collectors.toList()));
+        }
+
+        List<PrivilegeType> privileges = assignment.getPrivileges();
+        if (privileges == null || privileges.isEmpty()) {
+            log.warn("Privilege list is empty");
+        } else {
+            ret.getPrivileges().addAll(assignment.getPrivileges()
+                    .stream()
+                    .map(p -> p.id)
+                    .collect(Collectors.toList()));
+        }
         return ret;
     }
 }

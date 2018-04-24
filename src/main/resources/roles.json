@@ -1,0 +1,246 @@
+[
+  {
+    "id": 17592186045506,
+    "name": "Root Admin",
+    "privileges": [
+      {
+        "id": 17592186045486,
+        "name": "Manage Action"
+      },
+      {
+        "id": 17592186045488,
+        "name": "Manage Object"
+      },
+      {
+        "id": 17592186045490,
+        "name": "Manage Subject"
+      },
+      {
+        "id": 17592186045492,
+        "name": "Manage Privilege"
+      },
+      {
+        "id": 17592186045494,
+        "name": "Manage Role"
+      },
+      {
+        "id": 17592186045496,
+        "name": "Manage Scope"
+      },
+      {
+        "id": 17592186045498,
+        "name": "Manage Scope Type"
+      },
+      {
+        "id": 17592186045500,
+        "name": "Manage Scope Group"
+      },
+      {
+        "id": 17592186045504,
+        "name": "Manage Root Assignment"
+      }
+    ],
+    "delegableprivileges": []
+  },
+  {
+    "id": 17592186046116,
+    "name": "Program Staff Role",
+    "privileges": [
+      {
+        "id": 17592186046003,
+        "name": "Create Tarequest"
+      },
+      {
+        "id": 17592186046005,
+        "name": "Delete Tarequest"
+      },
+      {
+        "id": 17592186046007,
+        "name": "PreSubmit Tarequest"
+      },
+      {
+        "id": 17592186046009,
+        "name": "Submit Tarequest"
+      },
+      {
+        "id": 17592186046011,
+        "name": "Edit Tarequest"
+      },
+      {
+        "id": 17592186046013,
+        "name": "Return Tarequest"
+      },
+      {
+        "id": 17592186046015,
+        "name": "Withdraw Tarequest"
+      },
+      {
+        "id": 17592186046017,
+        "name": "Read Only View Tarequest"
+      },
+      {
+        "id": 17592186046019,
+        "name": "Copy Tarequest"
+      },
+      {
+        "id": 17592186046027,
+        "name": "Create Taactivity"
+      },
+      {
+        "id": 17592186046029,
+        "name": "Createall Taactivity"
+      },
+      {
+        "id": 17592186046031,
+        "name": "Save Taactivity"
+      },
+      {
+        "id": 17592186046039,
+        "name": "Editall Taactivity"
+      },
+      {
+        "id": 17592186046041,
+        "name": "Copy Taactivity"
+      },
+      {
+        "id": 17592186046051,
+        "name": "Resubmit Tarequest"
+      },
+      {
+        "id": 17592186046061,
+        "name": "Readall Tarequest"
+      },
+      {
+        "id": 17592186046063,
+        "name": "Readall Taactivity"
+      },
+      {
+        "id": 17592186046067,
+        "name": "Createall Tarequest"
+      },
+      {
+        "id": 17592186046069,
+        "name": "Editall Tarequest"
+      },
+      {
+        "id": 17592186046112,
+        "name": "Assign Tarequest"
+      },
+      {
+        "id": 17592186046114,
+        "name": "Assign Taactivity"
+      }
+    ],
+    "delegableprivileges": []
+  },
+  {
+    "id": 17592186046263,
+    "name": "Copied Role",
+    "privileges": [
+      {
+        "id": 17592186046003,
+        "name": "Create Tarequest"
+      },
+      {
+        "id": 17592186046005,
+        "name": "Delete Tarequest"
+      },
+      {
+        "id": 17592186046007,
+        "name": "PreSubmit Tarequest"
+      },
+      {
+        "id": 17592186046009,
+        "name": "Submit Tarequest"
+      },
+      {
+        "id": 17592186046011,
+        "name": "Edit Tarequest"
+      },
+      {
+        "id": 17592186046013,
+        "name": "Return Tarequest"
+      },
+      {
+        "id": 17592186046015,
+        "name": "Withdraw Tarequest"
+      },
+      {
+        "id": 17592186046017,
+        "name": "Read Only View Tarequest"
+      },
+      {
+        "id": 17592186046019,
+        "name": "Copy Tarequest"
+      },
+      {
+        "id": 17592186046021,
+        "name": "Read Tarequest"
+      },
+      {
+        "id": 17592186046025,
+        "name": "Reroute Tarquest"
+      },
+      {
+        "id": 17592186046051,
+        "name": "Resubmit Tarequest"
+      }
+    ],
+    "delegableprivileges": []
+  },
+  {
+    "id": 17592186046108,
+    "name": "TA Request Privilege",
+    "privileges": [
+      {
+        "id": 17592186046003,
+        "name": "Create Tarequest"
+      },
+      {
+        "id": 17592186046005,
+        "name": "Delete Tarequest"
+      },
+      {
+        "id": 17592186046007,
+        "name": "PreSubmit Tarequest"
+      },
+      {
+        "id": 17592186046009,
+        "name": "Submit Tarequest"
+      },
+      {
+        "id": 17592186046011,
+        "name": "Edit Tarequest"
+      },
+      {
+        "id": 17592186046013,
+        "name": "Return Tarequest"
+      },
+      {
+        "id": 17592186046015,
+        "name": "Withdraw Tarequest"
+      },
+      {
+        "id": 17592186046017,
+        "name": "Read Only View Tarequest"
+      },
+      {
+        "id": 17592186046019,
+        "name": "Copy Tarequest"
+      },
+      {
+        "id": 17592186046021,
+        "name": "Read Tarequest"
+      },
+      {
+        "id": 17592186046025,
+        "name": "Reroute Tarquest"
+      },
+      {
+        "id": 17592186046051,
+        "name": "Resubmit Tarequest"
+      }
+    ],
+    "delegableprivileges": []
+  }
+]
