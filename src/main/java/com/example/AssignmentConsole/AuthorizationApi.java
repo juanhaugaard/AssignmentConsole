@@ -1,6 +1,5 @@
 package com.example.AssignmentConsole;
 
-
 import com.example.AssignmentConsole.dto.AssignmentDto;
 import com.example.AssignmentConsole.dto.PrivilegeDto;
 import com.example.AssignmentConsole.dto.RoleDto;
@@ -8,20 +7,15 @@ import com.example.AssignmentConsole.dto.ScopeDto;
 import com.example.AssignmentConsole.dto.ScopeTypeDto;
 import com.example.AssignmentConsole.dto.SubjectDto;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Profile;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import spark.utils.IOUtils;
-import spark.utils.ResourceUtils;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 
 @Slf4j
 @Component
-@Profile({"stubs"})
-public class AuthorizationApiResource implements AuthorizationAPI {
+public class AuthorizationApi implements AuthorizationAPI {
     private static String MSG = "mapping {}: {}";
     private AuthMapper mapper;
     private List<SubjectDto> subjectList;
@@ -31,19 +25,20 @@ public class AuthorizationApiResource implements AuthorizationAPI {
     private List<PrivilegeDto> privilegeList;
     private List<AssignmentDto> assignmentList;
 
-    public AuthorizationApiResource() {
-        log.info("constructing {}", this.getClass().getSimpleName());
+    @Autowired
+    private JsonAccess jsonAccess;
+
+    public AuthorizationApi() {
         mapper = new AuthMapper();
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public String getSubjects() {
         AUTH_TYPE type = AUTH_TYPE.subjects;
         try {
             if (subjectList == null)
-                subjectList = (List<SubjectDto>) mapper.deserialize(jsonLoader(type.resource()), type);
-            return mapper.serialize(subjectList, type);
+                subjectList = mapper.deserializeSubjects(jsonAccess.jsonGet(type));
+            return mapper.serializeSubjects(subjectList);
         } catch (IOException e) {
             log.error(MSG, type, e.getMessage());
             subjectList = null;
@@ -52,13 +47,12 @@ public class AuthorizationApiResource implements AuthorizationAPI {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public String getScopes() {
         AUTH_TYPE type = AUTH_TYPE.scopes;
         try {
             if (scopeList == null)
-                scopeList = (List<ScopeDto>) mapper.deserialize(jsonLoader(type.resource()), type);
-            return mapper.serialize(scopeList, type);
+                scopeList = mapper.deserializeScopes(jsonAccess.jsonGet(type));
+            return mapper.serializeScopes(scopeList);
         } catch (IOException e) {
             log.error(MSG, type, e.getMessage());
             scopeList = null;
@@ -67,43 +61,12 @@ public class AuthorizationApiResource implements AuthorizationAPI {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public String getScopeTypes() {
-        AUTH_TYPE type = AUTH_TYPE.scopeTypes;
-        try {
-            if (scopeTypeList == null)
-                scopeTypeList = (List<ScopeTypeDto>) mapper.deserialize(jsonLoader(type.resource()), type);
-            return mapper.serialize(scopeTypeList, type);
-        } catch (IOException e) {
-            log.error(MSG, type, e.getMessage());
-            scopeTypeList = null;
-        }
-        return AuthMapper.JSON_EMPTY_ARRAY;
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public String getPrivileges() {
-        AUTH_TYPE type = AUTH_TYPE.privileges;
-        try {
-            if (privilegeList == null)
-                privilegeList = (List<PrivilegeDto>) mapper.deserialize(jsonLoader(type.resource()), type);
-            return mapper.serialize(privilegeList, type);
-        } catch (IOException e) {
-            log.error(MSG, type, e.getMessage());
-            privilegeList = null;
-        }
-        return AuthMapper.JSON_EMPTY_ARRAY;
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
     public String getRoles() {
         AUTH_TYPE type = AUTH_TYPE.roles;
         try {
             if (roleList == null)
-                roleList = (List<RoleDto>) mapper.deserialize(jsonLoader(type.resource()), type);
-            return mapper.serialize(roleList, type);
+                roleList = mapper.deserializeRoles(jsonAccess.jsonGet(type));
+            return mapper.serializeRoles(roleList);
         } catch (IOException e) {
             log.error(MSG, type, e.getMessage());
             roleList = null;
@@ -112,12 +75,39 @@ public class AuthorizationApiResource implements AuthorizationAPI {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    public String getScopeTypes() {
+        AUTH_TYPE type = AUTH_TYPE.scopeTypes;
+        try {
+            if (scopeTypeList == null)
+                scopeTypeList = mapper.deserializeScopeTypes(jsonAccess.jsonGet(type));
+            return mapper.serializeScopeTypes(scopeTypeList);
+        } catch (IOException e) {
+            log.error(MSG, type, e.getMessage());
+            scopeTypeList = null;
+        }
+        return AuthMapper.JSON_EMPTY_ARRAY;
+    }
+
+    @Override
+    public String getPrivileges() {
+        AUTH_TYPE type = AUTH_TYPE.privileges;
+        try {
+            if (privilegeList == null)
+                privilegeList = mapper.deserializePrivileges(jsonAccess.jsonGet(type));
+            return mapper.serializePrivileges(privilegeList);
+        } catch (IOException e) {
+            log.error(MSG, type, e.getMessage());
+            privilegeList = null;
+        }
+        return AuthMapper.JSON_EMPTY_ARRAY;
+    }
+
+    @Override
     public String getAssignments() {
         AUTH_TYPE type = AUTH_TYPE.assignments;
         try {
             if (assignmentList == null)
-                assignmentList = (List<AssignmentDto>) mapper.deserialize(jsonLoader(type.resource()), type);
+                assignmentList = mapper.deserializeAssignments(jsonAccess.jsonGet(type));
             List<AssignmentDto.Summary> summaries = mapper.assignmentsToSummaries(assignmentList);
             return mapper.serializeAssignmentSummaries(summaries);
         } catch (IOException e) {
@@ -128,9 +118,13 @@ public class AuthorizationApiResource implements AuthorizationAPI {
     }
 
     @Override
-    public String putAssignment(String jsonBody) {
-        log.info("putAssignment() invoked, json: {}", jsonBody);
-        return jsonBody;
+    public String putAssignment(final String jsonBody) {
+        AUTH_TYPE type = AUTH_TYPE.assignments;
+        try {
+            return jsonAccess.jsonPut(type, jsonBody);
+        } catch (IOException e) {
+            return e.getMessage();
+        }
     }
 
     @Override
@@ -143,18 +137,5 @@ public class AuthorizationApiResource implements AuthorizationAPI {
         privilegeList = null;
         assignmentList = null;
         return "Caches cleared";
-    }
-
-    private String jsonLoader(final String resource) {
-        String ret = null;
-        log.debug("executing GET {}", resource);
-        try {
-            URL url = ResourceUtils.getURL(resource);
-            Object obj = url.getContent();
-            ret = (obj instanceof InputStream) ? IOUtils.toString((InputStream) obj) : "";
-        } catch (IOException e) {
-            log.error(e.getMessage());
-        }
-        return ret;
     }
 }

@@ -41,135 +41,86 @@ public class AuthMapper {
         assignmentSummaryType = Types.newParameterizedType(List.class, AssignmentDto.Summary.class);
     }
 
-    public List<?> deserialize(final String json, AUTH_TYPE type) throws IOException {
-        List<?> ret = new ArrayList();
-        if (json == null || type == null)
-            return ret;
-        switch (type) {
-            case subjects:
-                ret = deserializeSubjects(json);
-                break;
-            case privileges:
-                ret = deserializePrivileges(json);
-                break;
-            case roles:
-                ret = deserializeRoles(json);
-                break;
-            case scopes:
-                ret = deserializeScopes(json);
-                break;
-            case scopeTypes:
-                ret = deserializeScopeTypes(json);
-                break;
-            case assignments:
-                ret = deserializeAssignments(json);
-                break;
-            default:
-                throw new IllegalArgumentException("Not implemented Authorization type: " + type);
-        }
-        return ret;
-    }
-
-    public String serialize(List<?> list, AUTH_TYPE type) throws IOException {
-        String ret = JSON_EMPTY_ARRAY;
-        if (list == null || type == null)
-            return ret;
-        switch (type) {
-            case subjects:
-                ret = serializeSubjects((List<SubjectDto>) list);
-                break;
-            case privileges:
-                ret = serializePrivileges((List<PrivilegeDto>) list);
-                break;
-            case roles:
-                ret = serializeRoles((List<RoleDto>) list);
-                break;
-            case scopes:
-                ret = serializeScopes((List<ScopeDto>) list);
-                break;
-            case scopeTypes:
-                ret = serializeScopeTypes((List<ScopeTypeDto>) list);
-                break;
-            case assignments:
-                ret = serializeAssignments((List<AssignmentDto>) list);
-                break;
-            default:
-                throw new IllegalArgumentException("Not implemented Authorization type: " + type);
-        }
-        return ret;
-    }
-
-    private List<SubjectDto> deserializeSubjects(final String json) throws IOException {
+    public List<SubjectDto> deserializeSubjects(final String json) throws IOException {
         JsonAdapter<List<SubjectDto>> jsonAdapter = moshi.adapter(subjectType);
         return jsonAdapter.fromJson(json);
     }
 
-    private String serializeSubjects(final List<SubjectDto> subjects) {
+    public String serializeSubjects(final List<SubjectDto> list) {
+        if (list == null) return JSON_EMPTY_ARRAY;
         JsonAdapter<List<SubjectDto>> jsonAdapter = moshi.adapter(subjectType);
-        return jsonAdapter.toJson(subjects);
+        return jsonAdapter.toJson(list);
     }
 
-    private List<ScopeDto> deserializeScopes(final String json) throws IOException {
+    public List<ScopeDto> deserializeScopes(final String json) throws IOException {
         JsonAdapter<List<ScopeDto>> jsonAdapter = moshi.adapter(scopeType);
         return jsonAdapter.fromJson(json);
     }
 
-    private String serializeScopes(final List<ScopeDto> scopes) {
+    public String serializeScopes(final List<ScopeDto> list) {
+        if (list == null) return JSON_EMPTY_ARRAY;
         JsonAdapter<List<ScopeDto>> jsonAdapter = moshi.adapter(scopeType);
-        return jsonAdapter.toJson(scopes);
+        return jsonAdapter.toJson(list);
     }
 
-    private List<RoleDto> deserializeRoles(final String json) throws IOException {
+    public List<RoleDto> deserializeRoles(final String json) throws IOException {
         JsonAdapter<List<RoleDto>> jsonAdapter = moshi.adapter(roleType);
         return jsonAdapter.fromJson(json);
     }
 
-    private String serializeRoles(final List<RoleDto> roles) {
+    public String serializeRoles(final List<RoleDto> list) {
+        if (list == null) return JSON_EMPTY_ARRAY;
         JsonAdapter<List<RoleDto>> jsonAdapter = moshi.adapter(roleType);
-        return jsonAdapter.toJson(roles);
+        return jsonAdapter.toJson(list);
     }
 
-    private List<ScopeTypeDto> deserializeScopeTypes(final String json) throws IOException {
+    public List<ScopeTypeDto> deserializeScopeTypes(final String json) throws IOException {
         JsonAdapter<List<ScopeTypeDto>> jsonAdapter = moshi.adapter(scopeTypeType);
         return jsonAdapter.fromJson(json);
     }
 
-    private String serializeScopeTypes(final List<ScopeTypeDto> scopetypes) {
+    public String serializeScopeTypes(final List<ScopeTypeDto> list) {
+        if (list == null) return JSON_EMPTY_ARRAY;
         JsonAdapter<List<ScopeTypeDto>> jsonAdapter = moshi.adapter(scopeTypeType);
-        return jsonAdapter.toJson(scopetypes);
+        return jsonAdapter.toJson(list);
     }
 
-    private List<PrivilegeDto> deserializePrivileges(final String json) throws IOException {
+    public List<PrivilegeDto> deserializePrivileges(final String json) throws IOException {
         JsonAdapter<List<PrivilegeDto>> jsonAdapter = moshi.adapter(privilegeType);
         return jsonAdapter.fromJson(json);
     }
 
-    private String serializePrivileges(final List<PrivilegeDto> privileges) {
+    public String serializePrivileges(final List<PrivilegeDto> list) {
+        if (list == null) return JSON_EMPTY_ARRAY;
         JsonAdapter<List<PrivilegeDto>> jsonAdapter = moshi.adapter(privilegeType);
-        return jsonAdapter.toJson(privileges);
+        return jsonAdapter.toJson(list);
     }
 
-    private List<AssignmentDto> deserializeAssignments(final String json) throws IOException {
+    public List<AssignmentDto> deserializeAssignments(final String json) throws IOException {
         JsonAdapter<List<AssignmentDto>> jsonAdapter = moshi.adapter(assignmentType);
         return jsonAdapter.fromJson(json);
     }
 
-    private String serializeAssignments(final List<AssignmentDto> assignments) {
+    public String serializeAssignments(final List<AssignmentDto> list) {
+        if (list == null) return JSON_EMPTY_ARRAY;
         JsonAdapter<List<AssignmentDto>> jsonAdapter = moshi.adapter(assignmentType);
-        return jsonAdapter.toJson(assignments);
+        return jsonAdapter.toJson(list);
     }
 
-    public String serializeAssignmentSummaries(final List<AssignmentDto.Summary> assignmentSummaries) {
+    public String serializeAssignmentSummaries(final List<AssignmentDto.Summary> list) {
+        if (list == null) return JSON_EMPTY_ARRAY;
         JsonAdapter<List<AssignmentDto.Summary>> jsonAdapter = moshi.adapter(assignmentSummaryType);
-        return jsonAdapter.toJson(assignmentSummaries);
+        return jsonAdapter.toJson(list);
     }
 
-    public List<AssignmentDto.Summary> assignmentsToSummaries(final List<AssignmentDto> assignments) {
+    public List<AssignmentDto.Summary> assignmentsToSummaries(final List<AssignmentDto> list) {
         List<AssignmentDto.Summary> ret = new ArrayList<>();
-        ret.addAll(assignments
-                .stream()
-                .map(a -> a.toSummary())
-                .collect(Collectors.toList()));
+        if (list != null) {
+            ret.addAll(list
+                    .stream()
+                    .map(a -> a.toSummary())
+                    .collect(Collectors.toList()));
+        }
         return ret;
     }
 }
