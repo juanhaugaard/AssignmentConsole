@@ -9,14 +9,15 @@ class User extends Component {
   }
 
   render() {
-    if (!this.props.value) {
-      console.warn('No users defined');
-    } else {
+    if (this.props.value) {
       return (
         <option value={this.props.value}>
           {this.props.value}
         </option>
       );
+    } else {
+        console.warn('No user defined');
+        return <option>No user defined</option>;
     }
   }
 }
@@ -92,7 +93,7 @@ class Users extends Component {
       <select
         value={this.props.selectedUser.identifier}
         id='usersSelector'
-        className='btn btn-primary default-margin'
+        className='btn btn-primary btn-sm default-margin'
         onChange={this.handleChangeFnc.bind(this)} >
         {userList(this.state.users)}
       </select>

@@ -17,7 +17,7 @@ class Scope extends Component {
       );
     else {
       console.warn('Scope.render() No scope defined');
-      return <option>No scopes defined</option>;
+      return <option>No scope defined</option>;
     }
   }
 }
@@ -91,9 +91,9 @@ class Scopes extends Component {
   render() {
     return (
       <select
-        value={this.props.selectedScope}
+        value={this.props.selectedScope.id}
         id='scopesSelector'
-        className='btn btn-info default-margin'
+        className='btn btn-info btn-sm default-margin'
         onChange={this.handleChangeFnc.bind(this)} >
         {scopeList(this.state.scopes)}
       </select>
