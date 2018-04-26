@@ -93,7 +93,7 @@ class Scopes extends Component {
       <select
         value={this.props.selectedScope}
         id='scopesSelector'
-        className='default-margin'
+        className='btn btn-info default-margin'
         onChange={this.handleChangeFnc.bind(this)} >
         {scopeList(this.state.scopes)}
       </select>

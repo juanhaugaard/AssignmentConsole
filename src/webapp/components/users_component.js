@@ -92,7 +92,7 @@ class Users extends Component {
       <select
         value={this.props.selectedUser.identifier}
         id='usersSelector'
-        className='default-margin'
+        className='btn btn-primary default-margin'
         onChange={this.handleChangeFnc.bind(this)} >
         {userList(this.state.users)}
       </select>

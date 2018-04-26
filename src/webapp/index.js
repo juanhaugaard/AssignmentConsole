@@ -27,7 +27,7 @@ class App extends Component {
       // assignemnts: [],
       // These fields are required
       selectedPrivileges: [],
-      selectedAssignment: { id: '', scopes: [], privileges: [] },
+      selectedAssignment: { id: '', scopes: [], privileges: [], roles: [] },
       selectedScope: { id: '', name: '' },
       selectedUser: { identifier: '', type: '' }
     };

@@ -24,11 +24,11 @@ public class Server {
     public final String GET_MSG = "Mapping GET {}";
     public final String PUT_MSG = "Mapping PUT {}";
     private int port;
-    private AuthorizationAPI api;
+    private AuthorizationApi api;
 
     @Autowired
     public Server(
-            AuthorizationAPI api,
+            AuthorizationApi api,
             @Value("${server-port}") int serverPort) {
         this.port = serverPort;
         this.api = api;

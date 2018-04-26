@@ -15,7 +15,7 @@ import java.util.List;
 
 @Slf4j
 @Component
-public class AuthorizationApi implements AuthorizationAPI {
+public class AuthorizationApi {
     private static String MSG = "mapping {}: {}";
     private AuthMapper mapper;
     private List<SubjectDto> subjectList;
@@ -32,7 +32,6 @@ public class AuthorizationApi implements AuthorizationAPI {
         mapper = new AuthMapper();
     }
 
-    @Override
     public String getSubjects() {
         AUTH_TYPE type = AUTH_TYPE.subjects;
         try {
@@ -46,7 +45,6 @@ public class AuthorizationApi implements AuthorizationAPI {
         return AuthMapper.JSON_EMPTY_ARRAY;
     }
 
-    @Override
     public String getScopes() {
         AUTH_TYPE type = AUTH_TYPE.scopes;
         try {
@@ -60,7 +58,6 @@ public class AuthorizationApi implements AuthorizationAPI {
         return AuthMapper.JSON_EMPTY_ARRAY;
     }
 
-    @Override
     public String getRoles() {
         AUTH_TYPE type = AUTH_TYPE.roles;
         try {
@@ -74,7 +71,6 @@ public class AuthorizationApi implements AuthorizationAPI {
         return AuthMapper.JSON_EMPTY_ARRAY;
     }
 
-    @Override
     public String getScopeTypes() {
         AUTH_TYPE type = AUTH_TYPE.scopeTypes;
         try {
@@ -88,7 +84,6 @@ public class AuthorizationApi implements AuthorizationAPI {
         return AuthMapper.JSON_EMPTY_ARRAY;
     }
 
-    @Override
     public String getPrivileges() {
         AUTH_TYPE type = AUTH_TYPE.privileges;
         try {
@@ -102,7 +97,6 @@ public class AuthorizationApi implements AuthorizationAPI {
         return AuthMapper.JSON_EMPTY_ARRAY;
     }
 
-    @Override
     public String getAssignments() {
         AUTH_TYPE type = AUTH_TYPE.assignments;
         try {
@@ -117,7 +111,6 @@ public class AuthorizationApi implements AuthorizationAPI {
         return AuthMapper.JSON_EMPTY_ARRAY;
     }
 
-    @Override
     public String putAssignment(final String jsonBody) {
         AUTH_TYPE type = AUTH_TYPE.assignments;
         try {
@@ -127,7 +120,6 @@ public class AuthorizationApi implements AuthorizationAPI {
         }
     }
 
-    @Override
     public String evictCache() {
         log.debug("Evicting caches");
         subjectList = null;
