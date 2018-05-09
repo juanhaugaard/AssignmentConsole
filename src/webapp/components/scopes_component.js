@@ -59,7 +59,7 @@ class Scopes extends Component {
         console.warn('scopes json is undefined');
       } else {
         // create copy of current state
-        var newState = Object.assign({}, this.state);
+        let newState = Object.assign({}, this.state);
         // update new state with changed attribute(s)
         newState.scopes = json;
         // set state to be the new state
@@ -72,7 +72,7 @@ class Scopes extends Component {
   }
 
   handleChangeFnc(event) {
-    let foundScope = this.state.scopes.find(scope => scope.id == event.target.value);
+    let foundScope = this.state.scopes.find(scope => scope.id === event.target.value);
     if (!foundScope) {
       console.warn('Scope changed: ' + 'scope not found');
     } else {

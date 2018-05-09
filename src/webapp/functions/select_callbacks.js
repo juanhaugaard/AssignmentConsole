@@ -14,13 +14,7 @@ const selectedUserCallback = function (selectedUser) {
   this.setState(newState);
 }
 
-/**
- * callback function to update state with new selected scope
- * 
- * @param {any} selectedScope the id of the new selected scope
- * @memberof App
- */
-const selectedScopeCallback = function (selectedScope) {
+function selectedScopeCallback(selectedScope) {
   // create copy of current state
   var newState = Object.assign({}, this.state);
   // update new state with changed attribute(s)
